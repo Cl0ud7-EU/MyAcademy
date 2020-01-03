@@ -1,7 +1,9 @@
 package Controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.security.CodeSource;
@@ -114,19 +116,16 @@ public class ControllerAdmin {
 		try {
 			jarFile = new File(codeSource.getLocation().toURI().getPath());
 			String jarDir = jarFile.getParentFile().getPath();
-			//*** pruebas ****///
-			FileChooser fileChooser = new FileChooser();
-		    File selectedFile = fileChooser.showSaveDialog(null);
-			//////////////
+		
 	        /*NOTE: Creating Database Constraints*/
 	        String dbName = "JTw8pRhybP";
 	        String dbUser = "JTw8pRhybP";
 	        String dbPass = "FeYHzXYXxk";
-	        String url = "remotemysql.com:3306";
+	        String url = "remotemysql.com";
 
 	        /*NOTE: Creating Path Constraints for folder saving*/
 	        /*NOTE: Here the backup folder is created for saving inside it*/
-	        String folderPath = jarDir + "\\backup";
+	        String folderPath = jarDir + "/backup";
 
 	        /*NOTE: Creating Folder if it does not exist*/
 	        File f1 = new File(folderPath);
@@ -134,16 +133,26 @@ public class ControllerAdmin {
 
 	        /*NOTE: Creating Path Constraints for backup saving*/
 	        /*NOTE: Here the backup is saved in a folder called backup with the name backup.sql*/
-	         String savePath = "\"" + jarDir + "\\backup\\" + "backup.sql\"";
+	         String savePath = "/" + jarDir + "/backup/" + "backup.sql";
 
 	        /*NOTE: Used to create a cmd command*/
-	        String executeCmd = url+"/mysqldump -u" + dbUser + " -p" + dbPass + " --database " + dbName + " -r " + selectedFile;
-	      
+	        String executeCmd ="mysqldump --single-transaction --host "+url+" -u " + dbUser + " -p" + dbPass +" "+ dbName + " -r "+ savePath;
 
 	        /*NOTE: Executing the command here*/
 	        Process runtimeProcess;
 			try {
 				runtimeProcess = Runtime.getRuntime().exec(executeCmd);
+				
+				/* de prueba para borrar ////////////////////////////////////////////////////////////////////////////////////
+				BufferedReader stdError = new BufferedReader(new InputStreamReader(runtimeProcess.getErrorStream()));
+	
+				String s = null;
+				
+				// Read any errors from the attempted command
+				System.out.println("Here is the standard error of the command (if any):\n");
+				System.out.println(stdError.readLine());
+				System.out.println(stdError.readLine()); */
+				
 				try {
 					int processComplete = runtimeProcess.waitFor();
 					if (processComplete == 0) {
@@ -159,9 +168,6 @@ public class ControllerAdmin {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        
-
-	        /*NOTE: processComplete=0 if correctly executed, will contain other values if not*/
 	        
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
