@@ -38,8 +38,7 @@ public class ControllerLogin {
         String javafxVersion = System.getProperty("javafx.version");
         bEntrar.setOnAction(e -> entrar());
         
-        
-
+        //Conexion con la DB
         con = ControllerDB.getConnection();
        
       
@@ -60,8 +59,6 @@ public class ControllerLogin {
 		
 		try {
 			
-			newRoot = FXMLLoader.load(getClass().getResource("/View/Administrador.fxml"));
-			
 			try {
 				stmt = con.createStatement();
 				rs = stmt.executeQuery(query);
@@ -70,6 +67,17 @@ public class ControllerLogin {
 				if (rs.next()) {
 
 					if(rs.getString(7).contentEquals(textName.getText()) && rs.getString(8).contentEquals(textPass.getText())) {
+						if(rs.getString("tipo_usuario").contentEquals("admin")) {
+							newRoot = FXMLLoader.load(getClass().getResource("/View/Administrador.fxml"));
+						}
+						else if(rs.getString(2).contentEquals("alumno")) {
+							newRoot = FXMLLoader.load(getClass().getResource("/View/Alumno.fxml"));
+						}
+						else {
+							newRoot = FXMLLoader.load(getClass().getResource("/View/Profesor.fxml"));		
+						}
+						stmt.close();
+						con.close();
 						cambio(newRoot);
 					}else {
 						labErr.setVisible(true);
