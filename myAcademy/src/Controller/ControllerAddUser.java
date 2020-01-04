@@ -77,9 +77,9 @@ public class ControllerAddUser {
     		email = textEmail.getText();
     	}
     	//Falta cambiar el nombre de estudiante que tenemos que crearlo y el telefono
-    	String query = "INSERT INTO `usuario` (`dni`, `tipo_usuario`, `nombre`, `apellidos`, `sexo`, `id_clase`, `nombre_usuario`, `contraseña`,  `email`) VALUES "
+    	String query = "INSERT INTO `usuario` (`dni`, `tipo_usuario`, `nombre`, `apellidos`, `sexo`, `id_grupo`, `nombre_usuario`, `contraseña`,  `email`, `evaluacion`) VALUES "
     			+ "('"+ textDNI.getText() +"', '"+combType.getValue()+"', '"+ textName.getText() +"', '"+ textApellidos.getText() +"', '"+ combGender.getValue() +"'"
-    					+ ", NULL, '"+textName.getText()+"@estudiantes"+"', '"+textPass.getText()+"','"+ email +"' )";
+    					+ ", NULL, '"+textName.getText()+"@estudiantes"+"', '"+textPass.getText()+"','"+ email +"','Sin nota'  )";
     	
     	
 		try {

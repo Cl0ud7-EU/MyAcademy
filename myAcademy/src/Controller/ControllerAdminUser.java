@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.Alumno;
 import Model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,25 +44,26 @@ public class ControllerAdminUser {
     @FXML
     private TextField textTel;
     @FXML
-    private ComboBox combType;
+    private ComboBox combEva;
     @FXML
     private ComboBox combGender;
     @FXML
     private Button bAdd;
     @FXML
-    private ListView<Usuario> listUsers;
+    private ListView<Alumno> listVAlumnos;
     
     private String email;
+    private String usuarioDNI;
     
     
     private Connection con = null;
     private Statement stmt = null;
     private ResultSet rs = null;
     private int rAgregar;
-    private Usuario usuario;
+    private Alumno alumno;
     
-    private ObservableList<Usuario> listUsuario =  FXCollections.observableArrayList();
-    private List<Usuario> usuarios = new ArrayList<Usuario>();
+    private ObservableList<Alumno> listAlumnos =  FXCollections.observableArrayList();
+    //private List<Usuario> usuarios = new ArrayList<Usuario>();
     
   
 
@@ -70,7 +72,7 @@ public class ControllerAdminUser {
         String javafxVersion = System.getProperty("javafx.version");
         
         bAdd.setOnAction(e -> agregarUsuario());
-        combType.getItems().addAll("Profesor", "Alumno");
+        combEva.getItems().addAll("Sin nota","Suspenso", "Aprobado", "Notable", "Sobresaliente");
         combGender.getItems().addAll("Masculino", "Femenino");
         
         
@@ -78,48 +80,21 @@ public class ControllerAdminUser {
         con = ControllerDB.getConnection();
         
         //Creamos una coleccion de objetos Usuario
-        String query = "SELECT * FROM usuario WHERE tipo_usuario != 'admin'";
+        String query = "SELECT * FROM usuario  WHERE tipo_usuario = 'Alumno'";
         try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
 			
-			if (rs.next()) {
-				Usuario usuario = new Usuario(rs.getString("nombre_usuario"),rs.getString("nombre"),rs.getString("apellidos"),
-						rs.getString("DNI"),rs.getString("tipo_usuario"),rs.getString("sexo"));
-				usuarios.add(usuario);
-				listUsuario.add(usuario);
+			while(rs.next()) {
+				Alumno alumno = new Alumno(rs.getString("nombre_usuario"),rs.getString("nombre"),rs.getString("apellidos"),
+						rs.getString("DNI"),rs.getString("tipo_usuario"),rs.getString("sexo"), rs.getString("telefono"), rs.getInt("id_grupo"), rs.getString("evaluacion"));
+				//usuarios.add(usuario);
+				System.out.print(alumno.getNombre());
+				listAlumnos.add(alumno);
 				
 				
 			}
-			listUsers.setItems(listUsuario);
-			
-			listUsers.setCellFactory(param -> new ListCell<Usuario>() {
-				@Override
-		        protected void updateItem(Usuario u, boolean empty){
-		        super.updateItem(u, empty);
-		            if(empty || u == null || u.getNombre() == null){
-		                setText("");
-		            }
-		            else{
-		                setText(u.getNombre()+" "+u.getDNI());
-		                
-		                //Listener que actualiza los campos al selecciona un usuario
-		                listUsers.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Usuario>() {
-		                    @Override
-		                    public void changed(ObservableValue<? extends Usuario> observable, Usuario oldValue, Usuario newValue) {
-		                        textName.setText(newValue.getNombre());
-		                        textApellidos.setText(newValue.getApellidos());
-		                        textDNI.setText(newValue.getDNI());
-		                        combType.getSelectionModel().select(newValue.getTipo());
-		                        combGender.getSelectionModel().select(newValue.getSexo());
-		                    }
-		                });
-		                //listUsers.getSelectionModel().getSelectedIndex();   
-		            }
-
-		        } 
-		        
-		    });
+			updateList();
 			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -135,39 +110,103 @@ public class ControllerAdminUser {
     }
    
     public void  agregarUsuario() {
-    	if(combType.getValue() == "Alumno") {
-    		email = null;
-    	}
-    	else {
-    		email = textEmail.getText();
-    	}
-    	//Falta cambiar el nombre de estudiante que tenemos que crearlo y el telefono
-    	/*String query = "UPDATE `usuario` (`dni`, `tipo_usuario`, `nombre`, `apellidos`, `sexo`, `id_clase`, `nombre_usuario`) VALUES "
-    			+ "('"+ textDNI.getText() +"', '"+combType.getValue()+"', '"+textName.getText()+"', '"+ textApellidos.getText() +"', '"+ combGender.getValue() +"'"
-    					+ ", NULL, '"+textName.getText()+"@estudiantes"+"') WHERE `dni` = '"+ textDNI.getText() +"'";*/
-    	String query = "UPDATE `usuario` SET "
-    			+ " `dni` = '"+textDNI.getText() 
-    			+ "', `tipo_usuario` = '"+combType.getValue()
-    			+ "', `nombre` = '"+textName.getText()
-    			+ "', `apellidos` = '"+textApellidos.getText()
-    			+ "', `sexo` = '"+combGender.getValue()
-    			+ "', `id_clase` = NULL"
-    			+ ", `nombre_usuario` = '"+textName.getText()+"@estudiantes"
-    			+ "' WHERE `usuario`.`dni` = '"+textDNI.getText()+"';";
-    		System.out.println(query);
-		try {
-			stmt = con.createStatement();
-			rAgregar = stmt.executeUpdate(query);
-			stmt.close();
-			con.close();
-			System.out.print("hecho");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+    	
+    	
+    	
+    	//Creamos Usuario
+    	alumno = new Alumno(listVAlumnos.getSelectionModel().getSelectedItem().getUsername(),
+    			textName.getText(), textApellidos.getText(), textDNI.getText(),
+    			listVAlumnos.getSelectionModel().getSelectedItem().getTipo(), combGender.getValue().toString(), textTel.getText(), 
+    			listVAlumnos.getSelectionModel().getSelectedItem().getIdGrupo(), combEva.getValue().toString());
+    	
+    	//Comprobamos que el dni que intentamos modificar no esta ya en la base de datos para otro alum
+    	int i = 0;
+    	for(Alumno a :listAlumnos){
+    		
+    		if((a.getDNI().equalsIgnoreCase(textDNI.getText()) && (!textDNI.getText().equalsIgnoreCase(usuarioDNI))))
+    		{
+    			labErr.setText("Error ese DNI ya pertenece a otro usuario");
+    			labErr.setVisible(true);
+    			break;
+    		}
+    		else if(a.getDNI().equalsIgnoreCase(usuarioDNI)) { //Todo correcto
+    			
+    			String query = "UPDATE `usuario` SET "
+    	    			+ " `dni` = '"+textDNI.getText() 
+    	    			+ "', `evaluacion` = '"+combEva.getValue().toString()
+    	    			+ "', `nombre` = '"+textName.getText()
+    	    			+ "', `apellidos` = '"+textApellidos.getText()
+    	    			+ "', `telefono` = '"+textTel.getText()
+    	    			+ "', `sexo` = '"+combGender.getValue().toString()
+    	    			+ "' WHERE `usuario`.`dni` = '"+usuarioDNI+"';";
+    	    		System.out.println(query);
+    	    		
+    	    		
+    			try {
+    				stmt = con.createStatement();
+    				rAgregar = stmt.executeUpdate(query);
+    				stmt.close();
+    				//con.close();
+    				listAlumnos.set(i, alumno);
+    				System.out.print("hecho");
+    				updateList();
+    				//listVAlumnos.getSelectionModel().clearSelection();
+    				
+    				break;
+    				
+    			} catch (SQLException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    			
+    			for(Alumno b :listAlumnos){
+    				System.out.print(b.getDNI());
+    			}
+				
+			}
+    		i++;
+			
 		}
+    	
+    }
+    
+    public void  updateList() {
+    	//listVAlumnos.getSourceItems().clear();
+    	;
+    	listVAlumnos.setItems(listAlumnos);
 		
-    	
-    	
+		listVAlumnos.setCellFactory(param -> new ListCell<Alumno>() {
+			@Override
+	        protected void updateItem(Alumno a, boolean empty){
+	        super.updateItem(a, empty);
+	            if(empty || a == null || a.getNombre() == null){
+	                setText("");
+	            }
+	            else{
+	                setText(a.getNombre()+" "+a.getDNI());
+	                
+	                //Listener que actualiza los campos al seleccionar un usuario
+	                listVAlumnos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Alumno>() {
+	                    @Override
+	                    public void changed(ObservableValue<? extends Alumno> observable, Alumno oldValue, Alumno newValue) {
+	                        textName.setText(newValue.getNombre());
+	                        textApellidos.setText(newValue.getApellidos());
+	                        textDNI.setText(newValue.getDNI());
+	                        textTel.setText(newValue.getTelefono());
+	                        combEva.getSelectionModel().select(newValue.getEvaluacion());
+	                        combGender.getSelectionModel().select(newValue.getSexo());
+	                        usuarioDNI = newValue.getDNI();
+	                        labErr.setVisible(false);
+	                    }
+	                });
+	                  
+	            }
+
+	        } 
+	        
+	    });
+		
+		
     }
     
 }

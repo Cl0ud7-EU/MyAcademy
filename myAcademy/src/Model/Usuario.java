@@ -5,18 +5,18 @@ public class Usuario {
 		private String username;
 		private String nombre;
 		private String apellidos;
-		private String DNI;
+		private String dni;
 		private String tipo;
 		private String sexo;
 		
-		public Usuario(String username, String nombre, String apellidos, String DNI, String tipo, String sexo) {
+		public Usuario(String username, String nombre, String apellidos, String dni, String tipo, String sexo) {
 			
-			this.setUsername(username);
-			this.setNombre(nombre);
-			this.setApellidos(apellidos);
-			this.setDNI(DNI);
-			this.setTipo(tipo);
-			this.setSexo(sexo);
+			this.username = username;
+			this.nombre = nombre;
+			this.apellidos = apellidos;
+			this.dni = dni;
+			this.tipo = tipo;
+			this.sexo = sexo;
 			
 		}
 
@@ -46,11 +46,11 @@ public class Usuario {
 		}
 
 		public String getDNI() {
-			return DNI;
+			return dni;
 		}
 
 		public void setDNI(String dNI) {
-			DNI = dNI;
+			dni = dNI;
 		}
 
 		public String getTipo() {
