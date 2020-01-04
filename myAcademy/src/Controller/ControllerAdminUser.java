@@ -71,9 +71,8 @@ public class ControllerAdminUser {
         
         bAdd.setOnAction(e -> agregarUsuario());
         combType.getItems().addAll("Profesor", "Alumno");
-        combType.getSelectionModel().select("Alumno");
         combGender.getItems().addAll("Masculino", "Femenino");
-        combGender.getSelectionModel().select("Femenino");
+        
         
         //Conexion con la DB
         con = ControllerDB.getConnection();
@@ -109,6 +108,10 @@ public class ControllerAdminUser {
 		                    @Override
 		                    public void changed(ObservableValue<? extends Usuario> observable, Usuario oldValue, Usuario newValue) {
 		                        textName.setText(newValue.getNombre());
+		                        textApellidos.setText(newValue.getApellidos());
+		                        textDNI.setText(newValue.getDNI());
+		                        combType.getSelectionModel().select(newValue.getTipo());
+		                        combGender.getSelectionModel().select(newValue.getSexo());
 		                    }
 		                });
 		                //listUsers.getSelectionModel().getSelectedIndex();   
@@ -139,11 +142,19 @@ public class ControllerAdminUser {
     		email = textEmail.getText();
     	}
     	//Falta cambiar el nombre de estudiante que tenemos que crearlo y el telefono
-    	String query = "INSERT INTO `usuario` (`dni`, `tipo_usuario`, `nombre`, `apellidos`, `sexo`, `id_clase`, `nombre_usuario`, `contraseña`,  `email`) VALUES "
-    			+ "('"+ textDNI.getText() +"', '"+combType.getValue()+"', '"+ textName.getText() +"', '"+ textApellidos.getText() +"', '"+ combGender.getValue() +"'"
-    					+ ", NULL, '"+textName.getText()+"@estudiantes"+"', '"+textPass.getText()+"','"+ email +"' )";
-    	
-    	
+    	/*String query = "UPDATE `usuario` (`dni`, `tipo_usuario`, `nombre`, `apellidos`, `sexo`, `id_clase`, `nombre_usuario`) VALUES "
+    			+ "('"+ textDNI.getText() +"', '"+combType.getValue()+"', '"+textName.getText()+"', '"+ textApellidos.getText() +"', '"+ combGender.getValue() +"'"
+    					+ ", NULL, '"+textName.getText()+"@estudiantes"+"') WHERE `dni` = '"+ textDNI.getText() +"'";*/
+    	String query = "UPDATE `usuario` SET "
+    			+ " `dni` = '"+textDNI.getText() 
+    			+ "', `tipo_usuario` = '"+combType.getValue()
+    			+ "', `nombre` = '"+textName.getText()
+    			+ "', `apellidos` = '"+textApellidos.getText()
+    			+ "', `sexo` = '"+combGender.getValue()
+    			+ "', `id_clase` = NULL"
+    			+ ", `nombre_usuario` = '"+textName.getText()+"@estudiantes"
+    			+ "' WHERE `usuario`.`dni` = '"+textDNI.getText()+"';";
+    		System.out.println(query);
 		try {
 			stmt = con.createStatement();
 			rAgregar = stmt.executeUpdate(query);

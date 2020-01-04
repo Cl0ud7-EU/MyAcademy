@@ -52,7 +52,7 @@ public class ControllerAddUser {
         String javaVersion = System.getProperty("java.version");
         String javafxVersion = System.getProperty("javafx.version");
         
-        bAdd.setOnAction(e -> agregarUsuario());
+        bAdd.setOnAction(e -> modificarUsuario());
         combType.getItems().addAll("Profesor", "Alumno");
         combType.getSelectionModel().select("Alumno");
         combGender.getItems().addAll("Masculino", "Femenino");
@@ -69,7 +69,7 @@ public class ControllerAddUser {
 		primaryStage.getScene().setRoot(newRoot);	
     }
    
-    public void  agregarUsuario() {
+    public void  modificarUsuario() {
     	if(combType.getValue() == "Alumno") {
     		email = null;
     	}
