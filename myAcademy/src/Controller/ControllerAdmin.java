@@ -18,6 +18,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
@@ -42,7 +43,7 @@ public class ControllerAdmin {
    
     private Connection con = null;
     
-  
+    private Stage primaryStage;
 
     public void initialize() {
         String javaVersion = System.getProperty("java.version");
@@ -58,9 +59,13 @@ public class ControllerAdmin {
         
         //Conexion con la DB
         con = ControllerDB.getConnection();
+        
     }
-    public void  cambio(Parent newRoot) {
-    	Stage primaryStage = (Stage) bAddUser.getScene().getWindow();
+    public void  cambio(Parent newRoot, String title, int height, int width) {
+    	primaryStage = (Stage) bAddUser.getScene().getWindow();
+    	primaryStage.setTitle(title);
+    	primaryStage.setHeight(height);
+        primaryStage.setWidth(width);
 		primaryStage.getScene().setRoot(newRoot);	
     }
     public void  addUser() {
@@ -68,7 +73,7 @@ public class ControllerAdmin {
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AddUser.fxml"));
-			cambio(newRoot);
+			cambio(newRoot, "Añadir Usuario", 400, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,8 +83,8 @@ public class ControllerAdmin {
     	
     	Parent newRoot;
 		try {
-			newRoot = FXMLLoader.load(getClass().getResource("/View/AdminUser.fxml"));
-			cambio(newRoot);
+			newRoot = FXMLLoader.load(getClass().getResource("/View/AdministrarUser.fxml"));
+			cambio(newRoot, "Administrar Usuario", 554, 836);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,7 +95,7 @@ public class ControllerAdmin {
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AddGrupo.fxml"));
-			cambio(newRoot);
+			cambio(newRoot, "Añadir Grupo", 400, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +106,7 @@ public class ControllerAdmin {
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AdminGrupo.fxml"));
-			cambio(newRoot);
+			cambio(newRoot, "Administrar Grupo", 400, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
