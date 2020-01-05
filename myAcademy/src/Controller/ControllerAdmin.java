@@ -73,7 +73,7 @@ public class ControllerAdmin {
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AddUser.fxml"));
-			cambio(newRoot, "Añadir Usuario", 400, 600);
+			cambio(newRoot, "Añadir Usuario", 500, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +83,7 @@ public class ControllerAdmin {
     	
     	Parent newRoot;
 		try {
-			newRoot = FXMLLoader.load(getClass().getResource("/View/AdministrarUser.fxml"));
+			newRoot = FXMLLoader.load(getClass().getResource("/View/AdministrarAlumno.fxml"));
 			cambio(newRoot, "Administrar Usuario", 554, 836);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

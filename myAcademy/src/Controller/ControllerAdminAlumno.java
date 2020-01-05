@@ -27,7 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
 
-public class ControllerAdminUser {
+public class ControllerAdminAlumno {
 
     @FXML
     private Label labErr;
@@ -88,8 +88,6 @@ public class ControllerAdminUser {
 			while(rs.next()) {
 				Alumno alumno = new Alumno(rs.getString("nombre_usuario"),rs.getString("nombre"),rs.getString("apellidos"),
 						rs.getString("DNI"),rs.getString("tipo_usuario"),rs.getString("sexo"), rs.getString("telefono"), rs.getInt("id_grupo"), rs.getString("evaluacion"));
-				//usuarios.add(usuario);
-				System.out.print(alumno.getNombre());
 				listAlumnos.add(alumno);
 				
 				

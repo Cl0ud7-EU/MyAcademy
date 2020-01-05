@@ -22,6 +22,10 @@ public class ControllerAddUser {
     @FXML
     private Label labErr;
     @FXML
+    private Label labEmail;
+    @FXML
+    private Label labTel;
+    @FXML
     private TextField textName;
     @FXML
     private TextField textPass;
@@ -53,10 +57,13 @@ public class ControllerAddUser {
         String javafxVersion = System.getProperty("javafx.version");
         
         bAdd.setOnAction(e -> modificarUsuario());
+        combType.setOnAction(e -> cambioTipo());
         combType.getItems().addAll("Profesor", "Alumno");
         combType.getSelectionModel().select("Alumno");
         combGender.getItems().addAll("Masculino", "Femenino");
         combGender.getSelectionModel().select("Femenino");
+        textEmail.setVisible(false);
+        labEmail.setVisible(false);
         
         
         //Conexion con la DB
@@ -71,15 +78,15 @@ public class ControllerAddUser {
    
     public void  modificarUsuario() {
     	if(combType.getValue() == "Alumno") {
-    		email = null;
+    		email = "NULL";
     	}
     	else {
     		email = textEmail.getText();
     	}
-    	//Falta cambiar el nombre de estudiante que tenemos que crearlo y el telefono
+    	//Falta cambiar el nombre de estudiante que tenemos que crearlo
     	String query = "INSERT INTO `usuario` (`dni`, `tipo_usuario`, `nombre`, `apellidos`, `sexo`, `id_grupo`, `nombre_usuario`, `contraseña`,  `email`, `evaluacion`) VALUES "
     			+ "('"+ textDNI.getText() +"', '"+combType.getValue()+"', '"+ textName.getText() +"', '"+ textApellidos.getText() +"', '"+ combGender.getValue() +"'"
-    					+ ", NULL, '"+textName.getText()+"@estudiantes"+"', '"+textPass.getText()+"','"+ email +"','Sin nota'  )";
+    					+ ", NULL, '"+textName.getText()+textDNI.getText()+"', '"+textPass.getText()+"','"+ email +"','Sin nota'  )";
     	
     	
 		try {
@@ -92,9 +99,24 @@ public class ControllerAddUser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-    	
-    	
+    }
+    
+    public void cambioTipo() {
+
+        if (combType.getValue() == "Alumno") {
+        	textEmail.setVisible(false);
+        	textTel.setVisible(true);
+        	labEmail.setVisible(false);
+        	labTel.setVisible(true);
+        	
+        }else {
+        	textEmail.setVisible(true);
+        	textTel.setVisible(false);
+        	labEmail.setVisible(true);
+        	labTel.setVisible(false);
+        	
+        }
+
     }
     
 }
