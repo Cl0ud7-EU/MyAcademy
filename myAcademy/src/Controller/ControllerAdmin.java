@@ -31,11 +31,19 @@ public class ControllerAdmin {
     @FXML
     private Button bAddUser;
     @FXML
-    private Button bAdminUser;
+    private Button bDelUser;
+    @FXML
+    private Button bModAlumnos;
+    @FXML
+    private Button bModProfes;
     @FXML
     private Button bAddGrupo;
     @FXML
+    private Button bDelGrupo;
+    @FXML
     private Button bAdminGrupo;
+    @FXML
+    private Button bAddPayment;
     @FXML
     private Button bBackup;
     @FXML
@@ -51,7 +59,8 @@ public class ControllerAdmin {
         
         //labName.setText("Adrián"); No borrar
         bAddUser.setOnAction(e -> addUser());
-        bAdminUser.setOnAction(e -> adminUser());
+        bModAlumnos.setOnAction(e -> modAlumnos());
+        bModProfes.setOnAction(e -> modProfes());
         bAddGrupo.setOnAction(e -> addGrupo());
         bAdminGrupo.setOnAction(e -> adminGrupo());
         bBackup.setOnAction(e -> backup());
@@ -79,12 +88,23 @@ public class ControllerAdmin {
 			e.printStackTrace();
 		}
     }
-    public void  adminUser() {
+    public void  modAlumnos() {
     	
     	Parent newRoot;
 		try {
-			newRoot = FXMLLoader.load(getClass().getResource("/View/AdministrarAlumno.fxml"));
-			cambio(newRoot, "Administrar Usuario", 554, 836);
+			newRoot = FXMLLoader.load(getClass().getResource("/View/ModificarAlumno.fxml"));
+			cambio(newRoot, "Modificar Alumno", 500, 836);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    public void  modProfes() {
+    	
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/ModificarProfesor.fxml"));
+			cambio(newRoot, "Modificar Profesor", 500, 836);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,8 +114,8 @@ public class ControllerAdmin {
     	
     	Parent newRoot;
 		try {
-			newRoot = FXMLLoader.load(getClass().getResource("/View/AddGrupo.fxml"));
-			cambio(newRoot, "Añadir Grupo", 400, 600);
+			newRoot = FXMLLoader.load(getClass().getResource("/View/AddGroup.fxml"));
+			cambio(newRoot, "Añadir Grupo", 500, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

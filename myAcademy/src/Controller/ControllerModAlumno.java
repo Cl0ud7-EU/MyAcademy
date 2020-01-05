@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.Alumno;
-import Model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,7 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
 
-public class ControllerAdminAlumno {
+public class ControllerModAlumno {
 
     @FXML
     private Label labErr;
@@ -63,7 +62,7 @@ public class ControllerAdminAlumno {
     private Alumno alumno;
     
     private ObservableList<Alumno> listAlumnos =  FXCollections.observableArrayList();
-    //private List<Usuario> usuarios = new ArrayList<Usuario>();
+
     
   
 
@@ -86,7 +85,7 @@ public class ControllerAdminAlumno {
 			rs = stmt.executeQuery(query);
 			
 			while(rs.next()) {
-				Alumno alumno = new Alumno(rs.getString("nombre_usuario"),rs.getString("nombre"),rs.getString("apellidos"),
+				alumno = new Alumno(rs.getString("nombre_usuario"),rs.getString("nombre"),rs.getString("apellidos"),
 						rs.getString("DNI"),rs.getString("tipo_usuario"),rs.getString("sexo"), rs.getString("telefono"), rs.getInt("id_grupo"), rs.getString("evaluacion"));
 				listAlumnos.add(alumno);
 				
@@ -170,7 +169,6 @@ public class ControllerAdminAlumno {
     
     public void  updateList() {
     	//listVAlumnos.getSourceItems().clear();
-    	;
     	listVAlumnos.setItems(listAlumnos);
 		
 		listVAlumnos.setCellFactory(param -> new ListCell<Alumno>() {
@@ -181,7 +179,7 @@ public class ControllerAdminAlumno {
 	                setText("");
 	            }
 	            else{
-	                setText(a.getNombre()+" "+a.getDNI());
+	                setText(a.getUsername());
 	                
 	                //Listener que actualiza los campos al seleccionar un usuario
 	                listVAlumnos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Alumno>() {
@@ -203,8 +201,6 @@ public class ControllerAdminAlumno {
 	        } 
 	        
 	    });
-		
-		
     }
     
 }

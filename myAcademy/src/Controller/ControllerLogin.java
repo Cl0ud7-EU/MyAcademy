@@ -47,6 +47,7 @@ public class ControllerLogin {
     }
     public void  cambio(Parent newRoot) {
     	Stage primaryStage = (Stage) bEntrar.getScene().getWindow();
+    	primaryStage.setTitle("Administrador");
 		primaryStage.getScene().setRoot(newRoot);	
     }
    

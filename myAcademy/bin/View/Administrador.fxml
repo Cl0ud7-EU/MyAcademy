@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerAdmin">
   <children>
@@ -15,25 +13,23 @@
       <menus>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem mnemonicParsing="false" text="About MyAcademy" />
           </items>
         </Menu>
       </menus>
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Label fx:id="labName" layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="140.0" text="Nombre de usuario">
-               <font>
-                  <Font name="Microsoft JhengHei UI Bold" size="12.0" />
-               </font>
-            </Label>
-           
-            <Button fx:id="bAddUser" layoutX="67.0" layoutY="112.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="505.0" text="Añadir usuario" />
-            <Button fx:id="bAdminUser" layoutX="67.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="505.0" text="Administrar usuarios" />
-            <Button fx:id="bAdminGrupo" layoutX="67.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="505.0" text="Administrar grupos" />
-            <Button fx:id="bBackup" layoutX="67.0" layoutY="311.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="505.0" text="Hacer copia de seguridad" />
-            <Button fx:id="bExit" layoutX="541.0" layoutY="19.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #dd0f0f;" text="Salir" />
-            <Button fx:id="bAddGrupo" layoutX="68.0" layoutY="207.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="505.0" text="Crear grupo" />
+            <Button fx:id="bAddPayment"  layoutX="67.0" layoutY="178.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="158.0" text="Añadir pagos" />
+            <Button fx:id="bModAlumnos" layoutX="67.0" layoutY="46.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Modificar Alumnos" />
+            <Button fx:id="bAddGrupo" layoutX="397.0" layoutY="46.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Crear grupo" />
+            <Button fx:id="bAdminGrupo" layoutX="397.0" layoutY="112.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Administrar grupos" />
+            <Button fx:id="bBackup" layoutX="397.0" layoutY="241.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Hacer copia de seguridad" />
+            <Button fx:id="bExit" layoutX="67.0" layoutY="314.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="493.0" style="-fx-background-color: #dd0f0f;" text="Salir" />
+            <Button fx:id="bModProfes" layoutX="67.0" layoutY="112.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Modificar Profesores" />
+            <Button fx:id="bDelUser" layoutX="67.0" layoutY="241.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Eliminar usuarios" />
+            <Button fx:id="bDelGrupo" layoutX="397.0" layoutY="178.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Eliminar grupos" />
+            <Button fx:id="bAddUser" layoutX="256.0" layoutY="112.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="114.0" text="Añadir usuarios" />
       </children>
     </AnchorPane>
   </children>

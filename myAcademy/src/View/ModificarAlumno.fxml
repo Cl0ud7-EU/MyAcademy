@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="440.0" minWidth="836.0" prefHeight="454.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerAdminAlumno">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="440.0" minWidth="836.0" prefHeight="454.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerModAlumno">
   <children>
     <MenuBar prefHeight="13.0" prefWidth="762.0" VBox.vgrow="NEVER">
       <menus>
