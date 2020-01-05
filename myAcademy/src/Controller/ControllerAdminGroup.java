@@ -32,6 +32,8 @@ public class ControllerAdminGroup {
     @FXML
     private Button bAdd;
     @FXML
+    private Button bAdministrarGroupStudents;
+    @FXML
     private ComboBox combDay;
     @FXML
     private ComboBox combHour;
@@ -59,6 +61,8 @@ public class ControllerAdminGroup {
     private Statement stmt = null;
     private ResultSet rs = null;
     private int rsInsert;
+    
+    private Stage primaryStage;
   
 
     public void initialize() {
@@ -66,6 +70,7 @@ public class ControllerAdminGroup {
         String javafxVersion = System.getProperty("javafx.version");
         
         bAdd.setOnAction(e -> modificarGrupo());
+        bAdministrarGroupStudents.setOnAction(e-> adminUsuarioGrupo());
         combDay.getItems().addAll("Lunes","Martes", "Miercoles", "Jueves", "Viernes");
         combHour.getItems().addAll("15:00","16:00", "17:00","18:00","19:00","20:00");
         combDuration.getItems().addAll("30m","60m", "90m","120m");
@@ -120,9 +125,22 @@ public class ControllerAdminGroup {
   
         
     }
-    public void  cambio(Parent newRoot) {
-    	Stage primaryStage = (Stage) bAdd.getScene().getWindow();
+    public void  cambio(Parent newRoot, String title, int height, int width) {
+    	primaryStage = (Stage) bAdd.getScene().getWindow();
+    	primaryStage.setTitle(title);
+    	primaryStage.setHeight(height);
+        primaryStage.setWidth(width);
 		primaryStage.getScene().setRoot(newRoot);	
+    }
+    public void adminUsuarioGrupo() {
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/AdministrarGroupStudents.fxml"));
+			cambio(newRoot, "Administrar estudiantes del grupo", 600, 850);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
    
     public void  modificarGrupo() {

@@ -3,10 +3,10 @@ package Model;
 public class Alumno extends Usuario{
 	
 	private String telefono;
-	private int idGrupo;
+	private String idGrupo;
 	private String evaluacion;
 	
-	public Alumno(String username, String nombre, String apellidos, String DNI, String tipo, String sexo, String telefono, int idGrupo, String evaluacion) {
+	public Alumno(String username, String nombre, String apellidos, String DNI, String tipo, String sexo, String telefono, String idGrupo, String evaluacion) {
 		super(username, nombre, apellidos, DNI, tipo, sexo);
 		
 		this.telefono = telefono;
@@ -22,11 +22,11 @@ public class Alumno extends Usuario{
 		return telefono;
 		
 	}
-	public  void setIdGrupo(int idGrupo) {
+	public  void setIdGrupo(String idGrupo) {
 		this.idGrupo = idGrupo;
 		
 	}
-	public  int getIdGrupo() {
+	public  String getIdGrupo() {
 		return idGrupo;
 		
 	}

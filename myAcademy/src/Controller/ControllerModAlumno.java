@@ -78,7 +78,7 @@ public class ControllerModAlumno {
         //Conexion con la DB
         con = ControllerDB.getConnection();
         
-        //Creamos una coleccion de objetos Usuario
+        //Creamos una coleccion de objetos Alumno
         String query = "SELECT * FROM usuario  WHERE tipo_usuario = 'Alumno'";
         try {
 			stmt = con.createStatement();
@@ -86,7 +86,7 @@ public class ControllerModAlumno {
 			
 			while(rs.next()) {
 				alumno = new Alumno(rs.getString("nombre_usuario"),rs.getString("nombre"),rs.getString("apellidos"),
-						rs.getString("DNI"),rs.getString("tipo_usuario"),rs.getString("sexo"), rs.getString("telefono"), rs.getInt("id_grupo"), rs.getString("evaluacion"));
+						rs.getString("DNI"),rs.getString("tipo_usuario"),rs.getString("sexo"), rs.getString("telefono"), rs.getString("id_grupo"), rs.getString("evaluacion"));
 				listAlumnos.add(alumno);
 				
 				
@@ -187,6 +187,7 @@ public class ControllerModAlumno {
 	                        combGender.getSelectionModel().select(newValue.getSexo());
 	                        usuarioDNI = newValue.getDNI();
 	                        labErr.setVisible(false);
+	                       
 	                    }
 	                });
 	                  
