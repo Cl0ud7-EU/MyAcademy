@@ -155,14 +155,8 @@ public class ControllerModAlumno {
     				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
-    			
-    			for(Alumno b :listAlumnos){
-    				System.out.print(b.getDNI());
-    			}
-				
 			}
     		i++;
-			
 		}
     	
     }

@@ -125,8 +125,8 @@ public class ControllerAdmin {
     	
     	Parent newRoot;
 		try {
-			newRoot = FXMLLoader.load(getClass().getResource("/View/AdminGrupo.fxml"));
-			cambio(newRoot, "Administrar Grupo", 400, 600);
+			newRoot = FXMLLoader.load(getClass().getResource("/View/AdministrarGroup.fxml"));
+			cambio(newRoot, "Administrar Grupo", 500, 700);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
