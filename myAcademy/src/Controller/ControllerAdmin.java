@@ -61,6 +61,7 @@ public class ControllerAdmin {
         bAddUser.setOnAction(e -> addUser());
         bModAlumnos.setOnAction(e -> modAlumnos());
         bModProfes.setOnAction(e -> modProfes());
+        bAddPayment.setOnAction(e -> addPayment());
         bAddGrupo.setOnAction(e -> addGrupo());
         bAdminGrupo.setOnAction(e -> adminGrupo());
         bBackup.setOnAction(e -> backup());
@@ -110,12 +111,23 @@ public class ControllerAdmin {
 			e.printStackTrace();
 		}
     }
+    public void  addPayment() {
+    	
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/AddPayment.fxml"));
+			cambio(newRoot, "Añadir Pago", 500, 836);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
     public void  addGrupo() {
     	
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AddGroup.fxml"));
-			cambio(newRoot, "AÃ±adir Grupo", 500, 600);
+			cambio(newRoot, "Añadir Grupo", 500, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
