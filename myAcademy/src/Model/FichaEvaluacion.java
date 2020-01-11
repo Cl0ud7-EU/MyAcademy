@@ -1,18 +1,30 @@
 package Model;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 public class FichaEvaluacion {
 
 	private double readingAndUseOfEnglish,writing,listening,speaking,media;
-	private String apuntesProfesor;
+	private String apuntesProfesor,dniAlumno;
+	private Date fecha;
 	
 	
-	public FichaEvaluacion(double rAndUseOf,double writ, double list, double speak, double media, String apuntes) {
+	public FichaEvaluacion(double rAndUseOf,double writ, double list, double speak, double media, String apuntes,String dniAlumno) throws ParseException {
 		this.readingAndUseOfEnglish=rAndUseOf;
 		this.writing=writ;
 		this.listening=list;
 		this.speaking=speak;
 		this.media=media;
 		this.apuntesProfesor=apuntes;
+		this.dniAlumno=dniAlumno;
+		fecha=new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		fecha=dateFormat.parse(fecha.toString());
 	}
 
 
@@ -73,6 +85,16 @@ public class FichaEvaluacion {
 
 	public void setApuntesProfesor(String apuntesProfesor) {
 		this.apuntesProfesor = apuntesProfesor;
+	}
+
+
+	public String getDniAlumno() {
+		return dniAlumno;
+	}
+
+
+	public void setDniAlumno(String dniAlumno) {
+		this.dniAlumno = dniAlumno;
 	}
 	
 }
