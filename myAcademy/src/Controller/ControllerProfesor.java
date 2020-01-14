@@ -71,8 +71,8 @@ public class ControllerProfesor {
 			Parent root = (Parent)newRoot.load();
 
 			ControllerAddFichaEvaluacion controller = newRoot.<ControllerAddFichaEvaluacion>getController();
-			//controller.setUser(idParamentro);
-			cambio(root, "Crear Ficha Evaluacion", 800, 800);
+			controller.setUser(idParametro);
+			cambio(root, "Crear Ficha Evaluacion", 500, 687);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
