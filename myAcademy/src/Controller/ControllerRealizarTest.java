@@ -1,6 +1,6 @@
 package Controller;
 
-import java.awt.Label;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ public class ControllerRealizarTest {
 	
 	@FXML
     private Label lPregunta;
+	
 	@FXML
     private Label lResp1;
 	@FXML
@@ -77,11 +79,14 @@ public class ControllerRealizarTest {
         rBut3.setUserData("3");
         
         Platform.runLater(() -> {
-
+        	
+        	
         	lPregunta.setText(test.getPreguntas(0));
-        	lResp1.setText(test.getRespuesta(0));
-        	lResp2.setText(test.getRespuesta(1));
-        	lResp3.setText(test.getRespuesta(2));
+        	lResp1.setText(test.getRespuesta(0).toString());
+        	lResp2.setText(test.getRespuesta(1).toString());
+        	lResp3.setText(test.getRespuesta(2).toString());
+        	
+        	
 
         });
        
@@ -97,8 +102,16 @@ public class ControllerRealizarTest {
     }
 	
 	public void responder() {
+		
+		if(contador ==  0) {
+			respuestas = toggleGroup.getSelectedToggle().getUserData().toString();
+			
+		}
+		else {
+			respuestas = respuestas +"¬" + toggleGroup.getSelectedToggle().getUserData().toString();
+		}
 	
-		respuestas = respuestas +"||" + toggleGroup.getSelectedToggle().getUserData().toString();
+		
 		contador++;
 		if (contador < 5) {
 			lPregunta.setText(test.getPreguntas(contador));
@@ -108,7 +121,7 @@ public class ControllerRealizarTest {
 	    	
     	}
 		else {
-			
+			addTest();
 			System.out.println("Test realizado");
 			back();
 		}

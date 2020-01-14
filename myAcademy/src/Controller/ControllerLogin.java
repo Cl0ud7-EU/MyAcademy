@@ -80,13 +80,13 @@ public class ControllerLogin {
 							cambio(root, "Administrador", 600, 600);
 						
 						}
-						else if(rs.getString(2).contentEquals("alumno")) {
+						else if(rs.getString(2).contentEquals("Alumno")) {
 							newRoot = new FXMLLoader(getClass().getResource("/View/Alumno.fxml"));
 							Parent root = (Parent)newRoot.load();
 							ControllerAlumno controller = newRoot.<ControllerAlumno>getController();
 							
-							//controller.setUser(rs.getString(0));
-							cambio(root, "Alumno", 500, 600);
+							controller.setUser(rs.getString(1));
+							cambio(root, "Alumno", 500, 700);
 						
 						}
 						else {

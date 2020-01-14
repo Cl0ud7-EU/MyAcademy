@@ -108,12 +108,12 @@ public class ControllerAddTest {
 			correctas = toggleGroup.getSelectedToggle().getUserData().toString();
 		}
 		else {
-			preguntas = preguntas +"||" +textPregunta.getText();
-			respuestas = respuestas +"||" +textResp1.getText();
-			respuestas = respuestas +"||" +textResp2.getText();
-			respuestas = respuestas +"||" +textResp3.getText();
+			preguntas = preguntas +"¬" +textPregunta.getText();
+			respuestas = respuestas +"¬" +textResp1.getText();
+			respuestas = respuestas +"¬" +textResp2.getText();
+			respuestas = respuestas +"¬" +textResp3.getText();
 			
-			correctas = correctas +"||" + toggleGroup.getSelectedToggle().getUserData().toString();
+			correctas = correctas +"¬" + toggleGroup.getSelectedToggle().getUserData().toString();
 		}
 		
 		
@@ -149,7 +149,8 @@ public class ControllerAddTest {
 		String query;
 		try {
 			if(rs.next()) {
-				query = "INSERT INTO `test2` (`id`, `id_Grupo`, `preguntas`, `respuestas`, `correctas`) VALUES (NULL,'"+rs.getString("id_grupo")+"','"+preguntas+"','"+respuestas+"','"+correctas+"')";
+			
+				query = "INSERT INTO `test2` (`id`, `id_Grupo`, `preguntas`, `respuestas`, `correctas`) VALUES (NULL,'"+rs.getString(1)+"','"+preguntas+"','"+respuestas+"','"+correctas+"')";
 
 				stmt2 = con.createStatement();
 				rsInt = stmt2.executeUpdate(query);
