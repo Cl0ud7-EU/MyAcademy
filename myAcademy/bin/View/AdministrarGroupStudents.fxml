@@ -43,6 +43,7 @@
                </font>
             </Label>
             <Button fx:id="bDelete" layoutX="579.0" layoutY="445.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="Eliminar" />
+            <Button fx:id="bBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Volver" />
       </children>
     </AnchorPane>
   </children>

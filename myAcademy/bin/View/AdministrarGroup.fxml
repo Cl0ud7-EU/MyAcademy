@@ -45,7 +45,7 @@
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="combDay" layoutX="406.0" layoutY="158.0" prefWidth="200.0"  />
+            <ComboBox fx:id="combDay" layoutX="406.0" layoutY="158.0" prefWidth="200.0" />
             <Label layoutX="406.0" layoutY="133.0" prefHeight="18.0" prefWidth="140.0" text="Hora de inicio">
                <font>
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
@@ -56,13 +56,14 @@
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="combHour" layoutX="404.0" layoutY="222.0" prefWidth="200.0"  />
+            <ComboBox fx:id="combHour" layoutX="404.0" layoutY="222.0" prefWidth="200.0" />
             <Label layoutX="406.0" layoutY="255.0" prefHeight="18.0" prefWidth="140.0" text="Duración">
                <font>
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
                </font>
             </Label>
             <ComboBox fx:id="combDuration" layoutX="404.0" layoutY="282.0" prefWidth="200.0" />
+            <Button fx:id="bBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Volver" />
       </children>
     </AnchorPane>
   </children>

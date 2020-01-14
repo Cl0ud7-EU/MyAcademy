@@ -45,6 +45,7 @@ public class ControllerAddTest {
     
     private Connection con = null;
     private Statement stmt = null;
+    private Statement stmt2 = null;
     private ResultSet rs = null;
     private int rsInt;
 	
@@ -55,9 +56,9 @@ public class ControllerAddTest {
 	private String[] respuestas =  new String[15];
 	private String[] correctas =  new String[5];
 	*/
-	String preguntas = "";
-	String respuestas = "";
-	String correctas = "";
+	String preguntas;
+	String respuestas;
+	String correctas;
 	
 	private int contador;
 	
@@ -98,14 +99,23 @@ public class ControllerAddTest {
 	public void addPregunta() {
 		
 		
+		if(contador ==  0) {
+			preguntas = textPregunta.getText();
+			respuestas = textResp1.getText();
+			respuestas = textResp2.getText();
+			respuestas = textResp3.getText();
+			
+			correctas = toggleGroup.getSelectedToggle().getUserData().toString();
+		}
+		else {
+			preguntas = preguntas +"||" +textPregunta.getText();
+			respuestas = respuestas +"||" +textResp1.getText();
+			respuestas = respuestas +"||" +textResp2.getText();
+			respuestas = respuestas +"||" +textResp3.getText();
+			
+			correctas = correctas +"," + toggleGroup.getSelectedToggle().getUserData().toString();
+		}
 		
-		
-		preguntas = preguntas +"," +textPregunta.getText();
-		respuestas = respuestas +"," +textResp1.getText();
-		respuestas = respuestas +"," +textResp2.getText();
-		respuestas = respuestas +"," +textResp3.getText();
-		
-		correctas = correctas +"," + toggleGroup.getSelectedToggle().getUserData().toString();
 		
 		/*preguntas[contador] = textPregunta.getText();
 		respuestas[contador*3 + 0] = textResp1.getText();
@@ -113,12 +123,17 @@ public class ControllerAddTest {
 		respuestas[contador*3 + 2] = textResp3.getText();*/
 	
 		//correctas[contador] = toggleGroup.getSelectedToggle().getUserData().toString();
-		if (contador == 4) {
-			bAdd.setOnAction(e -> addTest());
+		if (contador == 1) {
+			addTest();
 		}
 		
 		contador++;
-		if (contador == 4) {
+		textPregunta.clear();
+		textResp1.clear();
+		textResp2.clear();
+		textResp3.clear();
+		toggleGroup.selectToggle(null);
+		if (contador == 1) {
 			bAdd.setText("Crear Test");
 		}
 		
@@ -128,28 +143,34 @@ public class ControllerAddTest {
 	public void addTest() {
 	
 		//Buscamos el id del grupo al que da este profesor
-		String queryId = "SELECT id_grupo FROM grupos WHERE dni_profesor = '12345678P'";
+		String queryId = "SELECT * FROM `grupos` WHERE dni_profesor = '"+idParametro+"'";
 		try {
 			stmt = con.createStatement();
-			stmt.close();
 			rs = stmt.executeQuery(queryId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		String query = "INSERT INTO `test2`(`id_Grupo`, `preguntas`, `respuestas`, `correctas`) VALUES ("+rs+","+preguntas+","+respuestas+","+correctas+"))";
-		
-		
+		String query;
 		try {
-			stmt = con.createStatement();
-			rsInt = stmt.executeUpdate(query);
-			stmt.close();
-			back();
-		} catch (SQLException e) {
+			if(rs.next()) {
+				query = "INSERT INTO `test2` (`id`, `id_Grupo`, `preguntas`, `respuestas`, `correctas`) VALUES (NULL,'"+rs.getString("id_grupo")+"','"+preguntas+"','"+respuestas+"','"+correctas+"')";
+
+				stmt2 = con.createStatement();
+				rsInt = stmt2.executeUpdate(query);
+				stmt2.close();
+				stmt.close();
+				back();
+			}
+			
+			
+		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
+		//String query = "INSERT INTO `test2` (`id`, `id_Grupo`, `preguntas`, `respuestas`, `correctas`) VALUES (NULL, '1', 'b', 'b', 'b')";
+		
 		
 	}
 	

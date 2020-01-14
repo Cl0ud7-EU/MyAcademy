@@ -56,7 +56,7 @@ public class ControllerProfesor {
 			ControllerAddTest controller = newRoot.<ControllerAddTest>getController();
 			
 			controller.setUser(idParametro);
-			cambio(root, "Crear Test", 500, 600);
+			cambio(root, "Crear Test", 700, 800);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
