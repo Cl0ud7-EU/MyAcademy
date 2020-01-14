@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,7 +29,11 @@ public class ControllerProfesor {
         bCrearTest.setOnAction(e -> addTest());
         bCrearFicha.setOnAction(e -> addFicha());
        
-       
+        Platform.runLater(() -> {
+
+        	System.out.println(idParametro);
+
+        });
         bExit.setOnAction(e -> exit());
         
     }
@@ -91,6 +96,7 @@ public class ControllerProfesor {
     //Se usa para pasar un parametro entre vistas
     public void setUser(String string) {
 		idParametro = string;
+		
 		
 	}
 

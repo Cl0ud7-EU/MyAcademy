@@ -74,9 +74,9 @@ public class ControllerLogin {
 						if(rs.getString("tipo_usuario").contentEquals("admin")) {
 							newRoot = new FXMLLoader(getClass().getResource("/View/Administrador.fxml"));
 							Parent root = (Parent)newRoot.load();
-							ControllerProfesor controller = newRoot.<ControllerProfesor>getController();
+							ControllerAdmin controller = newRoot.<ControllerAdmin>getController();
 							
-							controller.setUser(rs.getString(0));
+							controller.setUser(rs.getString(1));
 							cambio(root, "Administrador", 600, 600);
 						
 						}
@@ -94,7 +94,7 @@ public class ControllerLogin {
 							Parent root = (Parent)newRoot.load();
 							ControllerProfesor controller = newRoot.<ControllerProfesor>getController();
 							
-							controller.setUser(rs.getString(0));
+							controller.setUser(rs.getString(1));
 							cambio(root, "Profesor", 600, 600);
 						}
 						stmt.close();

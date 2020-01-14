@@ -131,18 +131,25 @@ public class ControllerAddTest {
 		String queryId = "SELECT id_grupo FROM grupos WHERE dni_profesor = '12345678P'";
 		try {
 			stmt = con.createStatement();
+			stmt.close();
 			rs = stmt.executeQuery(queryId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
-		
-		
-		
 		String query = "INSERT INTO `test2`(`id_Grupo`, `preguntas`, `respuestas`, `correctas`) VALUES ("+rs+","+preguntas+","+respuestas+","+correctas+"))";
 		
+		
+		try {
+			stmt = con.createStatement();
+			rsInt = stmt.executeUpdate(query);
+			stmt.close();
+			back();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

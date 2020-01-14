@@ -227,6 +227,10 @@ public class ControllerAdmin {
     	
     	   
     }
+	public void setUser(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 
     
 }
