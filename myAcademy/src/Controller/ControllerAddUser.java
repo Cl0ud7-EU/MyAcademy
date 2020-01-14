@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -43,10 +44,12 @@ public class ControllerAddUser {
     private ComboBox combGender;
     @FXML
     private Button bAdd;
+    @FXML
+    private Button bBack;
     
     private String email;
     
-    
+    private String parametro;
     private Connection con = null;
     private Statement stmt = null;
     private int rs;
@@ -57,6 +60,10 @@ public class ControllerAddUser {
         String javafxVersion = System.getProperty("javafx.version");
         
         bAdd.setOnAction(e -> modificarUsuario());
+        //Boton volver
+        bBack.setOnAction(e -> back());
+        
+        
         combType.setOnAction(e -> cambioTipo());
         combType.getItems().addAll("Profesor", "Alumno");
         combType.getSelectionModel().select("Alumno");
@@ -65,9 +72,16 @@ public class ControllerAddUser {
         textEmail.setVisible(false);
         labEmail.setVisible(false);
         
-        
+    
         //Conexion con la DB
         con = ControllerDB.getConnection();
+        
+        Platform.runLater(() -> {
+
+        	System.out.println(parametro);
+
+        });
+        
   
         
     }
@@ -118,5 +132,13 @@ public class ControllerAddUser {
         }
 
     }
+    //Funcion para el boton volver
+    public void back() {
+    	
+    }
+	public void setUser(String string) {
+		parametro = string;
+		
+	}
     
 }

@@ -79,11 +79,21 @@ public class ControllerAdmin {
 		primaryStage.getScene().setRoot(newRoot);	
     }
     public void  addUser() {
-    	
-    	Parent newRoot;
+    	//Forma de pasar parametros, tendriamos que modificar todos los sitios donde cargamos una nueva escena y hacerlas igual que esta
+    	FXMLLoader newRoot;
 		try {
-			newRoot = FXMLLoader.load(getClass().getResource("/View/AddUser.fxml"));
-			cambio(newRoot, "AÃ±adir Usuario", 500, 600);
+			
+			newRoot = new FXMLLoader(getClass().getResource("/View/AddUser.fxml"));
+			Parent root = (Parent)newRoot.load();
+			//Aqui cogemos el controller al que vamos a llamar
+			ControllerAddUser controller = newRoot.<ControllerAddUser>getController();
+			//Aqui es donde pasamos el parametro, se llama a una funcion que tenemos que crear en el otro controller(no hace falta crearla ya te dice que falta y
+			// le das y te la pone el eclipse, y dentro mandamos lo que queramos, y en el otro controller tenemos que crear una variable, yo le llame parametro,
+			//y simplemente dentro de la funcion le damos valor a parametro.
+			controller.setUser("Adrian");
+			
+			//Esta linea es importante para cada escena, no hacer un copiar pegar de ella, vale el que tienen que es especifico para cada una
+			cambio(root, "AÃ±adir Usuario", 500, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,7 +126,7 @@ public class ControllerAdmin {
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AddPayment.fxml"));
-			cambio(newRoot, "Añadir Pago", 500, 836);
+			cambio(newRoot, "Aï¿½adir Pago", 500, 836);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,7 +137,7 @@ public class ControllerAdmin {
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AddGroup.fxml"));
-			cambio(newRoot, "Añadir Grupo", 500, 600);
+			cambio(newRoot, "Aï¿½adir Grupo", 500, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
