@@ -134,7 +134,15 @@ public class ControllerAddUser {
     }
     //Funcion para el boton volver
     public void back() {
-    	
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/Administrador.fxml"));
+			Stage primaryStage = (Stage) bBack.getScene().getWindow();
+			primaryStage.setTitle("Administrador");
+			primaryStage.getScene().setRoot(newRoot);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 	public void setUser(String string) {
 		parametro = string;

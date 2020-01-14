@@ -31,6 +31,8 @@ public class ControllerAddGroup {
     @FXML
     private Button bAdd;
     @FXML
+    private Button bBack;
+    @FXML
     private TextField textName;
     @FXML
     private ListView<Profesor> listVProfes;
@@ -51,7 +53,7 @@ public class ControllerAddGroup {
         String javafxVersion = System.getProperty("javafx.version");
         
         bAdd.setOnAction(e -> addGrupo());
-        
+        bBack.setOnAction(e -> back());
         
         //Conexion con la DB
         con = ControllerDB.getConnection();
@@ -78,9 +80,21 @@ public class ControllerAddGroup {
   
         
     }
-    public void  cambio(Parent newRoot) {
+    private void back() {
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/Administrador.fxml"));
+			Stage primaryStage = (Stage) bBack.getScene().getWindow();
+			primaryStage.setTitle("Administrador");
+			primaryStage.getScene().setRoot(newRoot);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void  cambio(Parent newRoot) {
     	Stage primaryStage = (Stage) bAdd.getScene().getWindow();
-		primaryStage.getScene().setRoot(newRoot);	
+		primaryStage.getScene().setRoot(newRoot);
     }
    
     public void  addGrupo() {

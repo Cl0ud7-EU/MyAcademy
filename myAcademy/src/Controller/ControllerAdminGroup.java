@@ -32,6 +32,8 @@ public class ControllerAdminGroup {
     @FXML
     private Button bAdd;
     @FXML
+    private Button bBack;
+    @FXML
     private Button bAdministrarGroupStudents;
     @FXML
     private ComboBox combDay;
@@ -71,6 +73,7 @@ public class ControllerAdminGroup {
         
         bAdd.setOnAction(e -> modificarGrupo());
         bAdministrarGroupStudents.setOnAction(e-> adminUsuarioGrupo());
+        bBack.setOnAction(e -> back());
         combDay.getItems().addAll("Lunes","Martes", "Miercoles", "Jueves", "Viernes");
         combHour.getItems().addAll("15:00","16:00", "17:00","18:00","19:00","20:00");
         combDuration.getItems().addAll("30m","60m", "90m","120m");
@@ -277,4 +280,16 @@ public class ControllerAdminGroup {
 	        
 	    });
     }
+    
+    private void back() {
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/Administrador.fxml"));
+			Stage primaryStage = (Stage) bBack.getScene().getWindow();
+			primaryStage.setTitle("Administrador");
+			primaryStage.getScene().setRoot(newRoot);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

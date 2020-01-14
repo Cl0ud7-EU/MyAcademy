@@ -34,6 +34,8 @@ public class ControllerAdministrarGroupStudents {
     private Button bAdd;
     @FXML
     private Button bDelete;
+    @FXML
+    private Button bBack;
    
     
   
@@ -70,6 +72,7 @@ public class ControllerAdministrarGroupStudents {
         
         bAdd.setOnAction(e -> addAlumno());
         bDelete.setOnAction(e-> delAlumno());
+        bBack.setOnAction(e -> back());
         listVGroups.setOnMouseClicked(new EventHandler<MouseEvent>() {
         	@Override
             public void handle(MouseEvent event) {
@@ -301,4 +304,16 @@ public class ControllerAdministrarGroupStudents {
 			e1.printStackTrace();
 		}
     }
+    
+    private void back() {
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/AdministrarGroup.fxml"));
+			Stage primaryStage = (Stage) bBack.getScene().getWindow();
+			primaryStage.setTitle("Administrar Grupo");
+			primaryStage.getScene().setRoot(newRoot);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

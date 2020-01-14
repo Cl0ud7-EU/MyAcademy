@@ -40,6 +40,8 @@ public class ControllerAddPayment {
 	private ListView<Alumno> listVAlumnos;
 	@FXML
 	private Button bAdd;
+	@FXML
+	private Button bBack;
 	
 	private Connection con = null;
     private Statement stmt = null;
@@ -55,6 +57,7 @@ public class ControllerAddPayment {
         String javafxVersion = System.getProperty("javafx.version");
 		
         bAdd.setOnAction(e -> addPayment());
+        bBack.setOnAction(e -> back());
         
         //Se establece la conexion con la base de datos
         con = ControllerDB.getConnection();
@@ -95,6 +98,18 @@ public class ControllerAddPayment {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private void back() {
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/Administrador.fxml"));
+			Stage primaryStage = (Stage) bBack.getScene().getWindow();
+			primaryStage.setTitle("Administrador");
+			primaryStage.getScene().setRoot(newRoot);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

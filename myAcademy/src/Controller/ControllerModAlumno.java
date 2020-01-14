@@ -49,6 +49,8 @@ public class ControllerModAlumno {
     @FXML
     private Button bAdd;
     @FXML
+    private Button bBack;
+    @FXML
     private ListView<Alumno> listVAlumnos;
     
     private String email;
@@ -71,6 +73,7 @@ public class ControllerModAlumno {
         String javafxVersion = System.getProperty("javafx.version");
         
         bAdd.setOnAction(e -> agregarUsuario());
+        bBack.setOnAction(e -> back());
         combEva.getItems().addAll("Sin nota","Suspenso", "Aprobado", "Notable", "Sobresaliente");
         combGender.getItems().addAll("Masculino", "Femenino");
         
@@ -197,5 +200,17 @@ public class ControllerModAlumno {
 	        
 	    });
     }
+    
+    private void back() {
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/Administrador.fxml"));
+			Stage primaryStage = (Stage) bBack.getScene().getWindow();
+			primaryStage.setTitle("Administrador");
+			primaryStage.getScene().setRoot(newRoot);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
     
 }
