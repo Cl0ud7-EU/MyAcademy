@@ -68,6 +68,7 @@ public class ControllerAdmin {
         bDelUser.setOnAction(e -> delUser());
         bAddGrupo.setOnAction(e -> addGrupo());
         bAdminGrupo.setOnAction(e -> adminGrupo());
+        bDelGrupo.setOnAction(e -> delGrupo());
         bBackup.setOnAction(e -> backup());
         bExit.setOnAction(e -> exit());
         
@@ -164,6 +165,17 @@ public class ControllerAdmin {
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AdministrarGroup.fxml"));
 			cambio(newRoot, "Administrar Grupo", 600, 850);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    public void  delGrupo() {
+    	
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/DeleteGroups.fxml"));
+			cambio(newRoot, "Eliminar grupos", 500, 836);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
