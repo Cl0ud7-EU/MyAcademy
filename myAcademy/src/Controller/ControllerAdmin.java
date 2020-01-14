@@ -264,7 +264,7 @@ public class ControllerAdmin {
     				Parent root = (Parent)newRoot.load();
 
     				//controller.setUser(idParamentro);
-    				cambio(root, "Login", 400, 640);
+    				cambio(root, "Login", 640, 400);
     			} catch (IOException e) {
     				// TODO Auto-generated catch block
     				e.printStackTrace();

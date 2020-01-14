@@ -23,7 +23,7 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="458.0" prefWidth="836.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="bResponder" layoutX="154.0" layoutY="494.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="514.0" style="-fx-background-color: #ed7812;" text="Responder" textFill="#f5f5f5e5" />
+            <Button fx:id="bResponder" layoutX="154.0" layoutY="494.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="514.0" style="-fx-background-color: #ffb412;" text="Responder" textFill="#f5f5f5e5" />
             <Label layoutX="83.0" layoutY="145.0" prefHeight="18.0" prefWidth="110.0" text="Respuesta 1">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -43,11 +43,11 @@
             <RadioButton fx:id="rBut2" layoutX="559.0" layoutY="263.0" mnemonicParsing="false" />
             <RadioButton fx:id="rBut1" layoutX="559.0" layoutY="178.0" mnemonicParsing="false" />
             <RadioButton fx:id="rBut3" layoutX="559.0" layoutY="344.0" mnemonicParsing="false" />
-            <Button fx:id="bBack" layoutX="83.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #3b31ea;" text="Volver" textFill="WHITE" />
             <Label fx:id="lPregunta" layoutX="83.0" layoutY="100.0" prefHeight="18.0" prefWidth="400.0" text="Pregunta" />
             <Label fx:id="lResp1" layoutX="83.0" layoutY="177.0" prefHeight="18.0" prefWidth="400.0" text="resp1" />
             <Label fx:id="lResp2" layoutX="83.0" layoutY="262.0" prefHeight="18.0" prefWidth="400.0" text="resp2" />
             <Label fx:id="lResp3" layoutX="83.0" layoutY="343.0" prefHeight="18.0" prefWidth="400.0" text="resp3" />
+            <Button fx:id="bBack" layoutX="83.0" layoutY="31.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #ffb412;" text="Volver" textFill="WHITE" />
       </children>
     </AnchorPane>
   </children>

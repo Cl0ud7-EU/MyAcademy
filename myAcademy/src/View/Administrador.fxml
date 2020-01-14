@@ -20,12 +20,12 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="bAddPayment"  layoutX="67.0" layoutY="178.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="158.0" text="Añadir pagos" />
+            <Button fx:id="bAddPayment" layoutX="67.0" layoutY="178.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="158.0" text="Añadir pagos" />
             <Button fx:id="bModAlumnos" layoutX="67.0" layoutY="46.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Modificar Alumnos" />
             <Button fx:id="bAddGrupo" layoutX="397.0" layoutY="46.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Crear grupo" />
             <Button fx:id="bAdminGrupo" layoutX="397.0" layoutY="112.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Administrar grupos" />
             <Button fx:id="bBackup" layoutX="397.0" layoutY="241.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Hacer copia de seguridad" />
-            <Button fx:id="bExit" layoutX="67.0" layoutY="314.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="493.0" style="-fx-background-color: #dd0f0f;" text="Salir" />
+            <Button fx:id="bExit" layoutX="67.0" layoutY="314.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="493.0" style="-fx-background-color: #ffb412;" text="Salir" />
             <Button fx:id="bModProfes" layoutX="67.0" layoutY="112.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Modificar Profesores" />
             <Button fx:id="bDelUser" layoutX="67.0" layoutY="241.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Eliminar usuarios" />
             <Button fx:id="bDelGrupo" layoutX="397.0" layoutY="178.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="158.0" text="Eliminar grupos" />

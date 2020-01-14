@@ -77,7 +77,7 @@ public class ControllerLogin {
 							ControllerAdmin controller = newRoot.<ControllerAdmin>getController();
 							
 							controller.setUser(rs.getString(1));
-							cambio(root, "Administrador", 600, 600);
+							cambio(root, "Administrador", 450, 600);
 						
 						}
 						else if(rs.getString(2).contentEquals("Alumno")) {

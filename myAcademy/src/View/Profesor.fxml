@@ -22,7 +22,7 @@
       <children>
             <Button fx:id="bCrearTest" layoutX="93.0" layoutY="140.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="443.0" text="CrearTest" />
             <Button fx:id="bCrearFicha" layoutX="92.0" layoutY="232.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="443.0" text="Crear Ficha de Alumno" />
-            <Button fx:id="bExit" layoutX="92.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="443.0" style="-fx-background-color: #dd0f0f;" text="Salir" />
+            <Button fx:id="bExit" layoutX="92.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="443.0" style="-fx-background-color: #ffb412;" text="Salir" />
       </children>
     </AnchorPane>
   </children>
