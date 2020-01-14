@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -79,6 +80,7 @@ public class ControllerProfesor {
 		}
     }
     public void  exit() {
+    	
     	FXMLLoader newRoot;
 		try {
 			

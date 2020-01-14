@@ -131,7 +131,7 @@ public class ControllerAdmin {
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AddPayment.fxml"));
-			cambio(newRoot, "A�adir Pago", 500, 836);
+			cambio(newRoot, "Añadir Pago", 550, 836);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,7 +153,7 @@ public class ControllerAdmin {
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AddGroup.fxml"));
-			cambio(newRoot, "A�adir Grupo", 500, 600);
+			cambio(newRoot, "Añadir Grupo", 600, 800);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -264,6 +264,12 @@ public class ControllerAdmin {
     	});	
     }
     public void  exit() {
+    	try {
+			con.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Mensaje");
     	alert.setHeaderText("Estas seguro de que quieres salir?");

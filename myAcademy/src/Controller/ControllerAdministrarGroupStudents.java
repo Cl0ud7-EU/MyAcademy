@@ -306,6 +306,12 @@ public class ControllerAdministrarGroupStudents {
     }
     
     private void back() {
+    	try {
+			con.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AdministrarGroup.fxml"));

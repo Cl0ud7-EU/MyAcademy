@@ -186,7 +186,12 @@ public class ControllerAddTest {
 	
 	//Funcion para el boton volver
     public void back() {
-    
+    	try {
+			con.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     	FXMLLoader newRoot;
 		try {
 			

@@ -183,7 +183,12 @@ public class ControllerAddFichaEvaluacion {
     }
     
     public void back() {
-        
+    	try {
+			con.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     	FXMLLoader newRoot;
 		try {
 			

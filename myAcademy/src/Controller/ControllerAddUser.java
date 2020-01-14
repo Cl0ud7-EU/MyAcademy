@@ -78,7 +78,7 @@ public class ControllerAddUser {
         
         Platform.runLater(() -> {
 
-        	System.out.println(parametro);
+        	
 
         });
         
@@ -134,6 +134,12 @@ public class ControllerAddUser {
     }
     //Funcion para el boton volver
     public void back() {
+    	try {
+			con.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     	Parent newRoot;
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/Administrador.fxml"));

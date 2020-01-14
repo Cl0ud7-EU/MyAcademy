@@ -98,7 +98,12 @@ public class ControllerAddGroup {
     }
    
     public void  addGrupo() {
-    	
+    	try {
+			con.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     	//Falta cambiar el nombre de estudiante que tenemos que crearlo
     	String query = "INSERT INTO `grupos` (`id_grupo`, `dni_profesor`) VALUES "
     			+ "('"+ textName.getText() +"', '"+listVProfes.getSelectionModel().getSelectedItem().getDNI()+"')";
