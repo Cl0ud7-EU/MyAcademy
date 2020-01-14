@@ -76,6 +76,17 @@ public class ControllerAddPayment {
 				listAlumnos.add(alumno);
 			}
 			listVAlumnos.setItems(listAlumnos);
+			
+			listVAlumnos.setCellFactory(param -> new ListCell<Alumno>() {
+				protected void updateItem(Alumno a, boolean empty) {
+			        super.updateItem(a, empty);
+			        if (empty || a == null || a.getNombre() == null) {
+			        	setText("");
+			        } else {
+			        	setText(a.getUsername());
+			        }
+				}
+			});
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
