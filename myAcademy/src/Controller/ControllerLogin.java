@@ -31,6 +31,7 @@ public class ControllerLogin {
     private Statement stmt = null;
     private ResultSet rs = null;
     
+    private Stage primaryStage;
   
 
     public void initialize() {
@@ -45,15 +46,17 @@ public class ControllerLogin {
   
         
     }
-    public void  cambio(Parent newRoot) {
-    	Stage primaryStage = (Stage) bEntrar.getScene().getWindow();
-    	primaryStage.setTitle("Administrador");
+    public void  cambio(Parent newRoot, String title, int height, int width) {
+    	primaryStage = (Stage) bEntrar.getScene().getWindow();
+    	primaryStage.setTitle(title);
+    	primaryStage.setHeight(height);
+        primaryStage.setWidth(width);
 		primaryStage.getScene().setRoot(newRoot);	
     }
    
     public void  entrar() {
 
-    	Parent newRoot;
+    	FXMLLoader newRoot;
     	String usuario = textName.getText();
 		String query = "SELECT * FROM usuario WHERE nombre_usuario = '"+usuario+"'";
 	
@@ -69,17 +72,34 @@ public class ControllerLogin {
 
 					if(rs.getString(7).contentEquals(textName.getText()) && rs.getString(8).contentEquals(textPass.getText())) {
 						if(rs.getString("tipo_usuario").contentEquals("admin")) {
-							newRoot = FXMLLoader.load(getClass().getResource("/View/Administrador.fxml"));
+							newRoot = new FXMLLoader(getClass().getResource("/View/Administrador.fxml"));
+							Parent root = (Parent)newRoot.load();
+							ControllerProfesor controller = newRoot.<ControllerProfesor>getController();
+							
+							controller.setUser(rs.getString(0));
+							cambio(root, "Administrador", 600, 600);
+						
 						}
 						else if(rs.getString(2).contentEquals("alumno")) {
-							newRoot = FXMLLoader.load(getClass().getResource("/View/Alumno.fxml"));
+							newRoot = new FXMLLoader(getClass().getResource("/View/Alumno.fxml"));
+							Parent root = (Parent)newRoot.load();
+							ControllerAlumno controller = newRoot.<ControllerAlumno>getController();
+							
+							//controller.setUser(rs.getString(0));
+							cambio(root, "Alumno", 500, 600);
+						
 						}
 						else {
-							newRoot = FXMLLoader.load(getClass().getResource("/View/Profesor.fxml"));		
+							newRoot = new FXMLLoader(getClass().getResource("/View/Profesor.fxml"));
+							Parent root = (Parent)newRoot.load();
+							ControllerProfesor controller = newRoot.<ControllerProfesor>getController();
+							
+							controller.setUser(rs.getString(0));
+							cambio(root, "Profesor", 600, 600);
 						}
 						stmt.close();
 						con.close();
-						cambio(newRoot);
+						
 					}else {
 						labErr.setVisible(true);
 					}

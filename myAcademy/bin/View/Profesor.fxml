@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerProfesor">>
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Button fx:id="bCrearTest" layoutX="93.0" layoutY="140.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="443.0" text="CrearTest" />
+            <Button fx:id="bCrearFicha" layoutX="92.0" layoutY="232.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="443.0" text="Crear Ficha de Alumno" />
+            <Button fx:id="bExit" layoutX="92.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="443.0" style="-fx-background-color: #dd0f0f;" text="Salir" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

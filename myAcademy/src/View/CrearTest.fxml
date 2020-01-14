@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="440.0" minWidth="822.0" prefHeight="619.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerAddTest">
+  <children>
+    <MenuBar prefHeight="13.0" prefWidth="933.0" VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyAcademy" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="458.0" prefWidth="836.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Button fx:id="bAdd" layoutX="154.0" layoutY="494.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="514.0" style="-fx-background-color: #ed7812;" text="Añadir pregunta" textFill="#f5f5f5e5" />
+            <TextField fx:id="textPregunta" layoutX="83.0" layoutY="99.0" prefHeight="26.0" prefWidth="414.0" />
+            <Label layoutX="83.0" layoutY="145.0" prefHeight="18.0" prefWidth="66.0" text="Respuesta 1" />
+            <TextField fx:id="textResp1" layoutX="83.0" layoutY="174.0" prefHeight="26.0" prefWidth="414.0" />
+            <TextField fx:id="textResp2" layoutX="83.0" layoutY="259.0" prefHeight="26.0" prefWidth="414.0" />
+            <TextField fx:id="textResp3" layoutX="83.0" layoutY="340.0" prefHeight="26.0" prefWidth="414.0" />
+            <Label layoutX="83.0" layoutY="67.0" prefHeight="18.0" prefWidth="66.0" text="Pregunta" />
+            <Label layoutX="83.0" layoutY="229.0" prefHeight="18.0" prefWidth="66.0" text="Respuesta 2" />
+            <Label layoutX="83.0" layoutY="310.0" prefHeight="18.0" prefWidth="66.0" text="Respuesta 3" />
+            <RadioButton fx:id="rBut2" layoutX="559.0" layoutY="263.0" mnemonicParsing="false" text="Correcta" />
+            <RadioButton fx:id="rBut1" layoutX="559.0" layoutY="178.0" mnemonicParsing="false" text="Correcta" />
+            <RadioButton fx:id="rBut3" layoutX="559.0" layoutY="344.0" mnemonicParsing="false" text="Correcta" />
+            <Button fx:id="bBack" layoutX="83.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #3b31ea;" text="Volver" textFill="WHITE" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

@@ -55,6 +55,7 @@ public class ControllerAddPayment {
 	public void initialize() {
 		String javaVersion = System.getProperty("java.version");
         String javafxVersion = System.getProperty("javafx.version");
+        
 		
         bAdd.setOnAction(e -> addPayment());
         bBack.setOnAction(e -> back());
