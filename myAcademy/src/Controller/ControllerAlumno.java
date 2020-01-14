@@ -120,21 +120,35 @@ public class ControllerAlumno {
     }
     
     public void realizar() {
-    	FXMLLoader newRoot;
-		try {
-			
-			newRoot = new FXMLLoader(getClass().getResource("/View/RealizarTest.fxml"));
-			Parent root = (Parent)newRoot.load();
+    	if(listVTest.getSelectionModel().isEmpty()) {
+    		Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Mensaje");
+        	alert.setHeaderText("Selecciona un test");
+        	//alert.setContentText("I have a great message for you!");
+        	alert.showAndWait().ifPresent(rs -> {
+        	    if (rs == ButtonType.OK) {
+        	    	
+        	    }
+        	});	
+    	}
+    	else {
+    		FXMLLoader newRoot;
+    		try {
+    			
+    			newRoot = new FXMLLoader(getClass().getResource("/View/RealizarTest.fxml"));
+    			Parent root = (Parent)newRoot.load();
 
-			ControllerRealizarTest controller = newRoot.<ControllerRealizarTest>getController();
-			
-			controller.setUser(idParametro);
-			controller.setTest(listVTest.getSelectionModel().getSelectedItem());
-			cambio(root, "Test", 700, 800);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    			ControllerRealizarTest controller = newRoot.<ControllerRealizarTest>getController();
+    			
+    			controller.setUser(idParametro);
+    			controller.setTest(listVTest.getSelectionModel().getSelectedItem());
+    			cambio(root, "Test", 700, 800);
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	}
+    	
     
     	
     }
@@ -199,7 +213,7 @@ public class ControllerAlumno {
     				Parent root = (Parent)newRoot.load();
 
     				//controller.setUser(idParamentro);
-    				cambio(root, "Login", 640, 400);
+    				cambio(root, "Login", 440, 640);
     			} catch (IOException e) {
     				// TODO Auto-generated catch block
     				e.printStackTrace();
