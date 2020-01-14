@@ -19,7 +19,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -224,7 +227,26 @@ public class ControllerAdmin {
    
     }
     public void  exit() {
-    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Mensaje");
+    	alert.setHeaderText("Estas seguro de que quieres salir?");
+    	//alert.setContentText("I have a great message for you!");
+    	alert.showAndWait().ifPresent(rs -> {
+    	    if (rs == ButtonType.OK) {
+    	    	FXMLLoader newRoot;
+    			try {
+    				
+    				newRoot = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
+    				Parent root = (Parent)newRoot.load();
+
+    				//controller.setUser(idParamentro);
+    				cambio(root, "Login", 400, 640);
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    	    }
+    	});	
     	   
     }
 	public void setUser(String string) {

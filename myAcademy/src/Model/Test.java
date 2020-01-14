@@ -5,9 +5,9 @@ public class Test {
 	
 	private String id_grupo;
 	private int id_test;
-	private String[] preguntas =  new String[3];
-	private String[] respuestas =  new String[9];
-	private String[] correctas =  new String[3];
+	private String[] preguntas =  new String[5];
+	private String[] respuestas =  new String[15];
+	private String[] correctas =  new String[5];
 	
 	public Test(int id_test, String id_grupo, String[] preguntas, String[] respuestas, String[] correctas) {
 	
@@ -20,6 +20,9 @@ public class Test {
 		for (int i = 0; i < respuestas.length; i++) {
 			this.respuestas[i] = respuestas[i];
 		}
+		
+		this.id_grupo = id_grupo;
+		this.id_test = id_test;
 	
 	}
 	public String getPreguntas(int i) {

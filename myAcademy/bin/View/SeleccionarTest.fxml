@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="554.0" minWidth="836.0" prefHeight="554.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerAdminGroup">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="554.0" minWidth="836.0" prefHeight="554.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerSelectTest">
   <children>
     <MenuBar prefHeight="13.0" prefWidth="762.0" VBox.vgrow="NEVER">
       <menus>
@@ -23,13 +23,13 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="490.0" prefWidth="758.0" VBox.vgrow="ALWAYS">
       <children>
-            <ListView fx:id="listGroups" layoutX="267.0" layoutY="98.0" prefHeight="332.0" prefWidth="302.0" />
+            <ListView fx:id="listTest" layoutX="267.0" layoutY="98.0" prefHeight="332.0" prefWidth="302.0" />
             <Label layoutX="266.0" layoutY="59.0" prefHeight="18.0" prefWidth="126.0" text="Lista de test">
                <font>
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="bAdministrarGroupStudents" layoutX="266.0" layoutY="466.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="302.0" text="Realizar" />
+            <Button fx:id="bRealizar" layoutX="266.0" layoutY="466.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="302.0" text="Realizar" />
       </children>
     </AnchorPane>
   </children>

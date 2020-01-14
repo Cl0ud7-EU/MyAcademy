@@ -1,11 +1,14 @@
 package Controller;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Model.Test;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,23 +18,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
-public class ControllerAddTest {
+public class ControllerRealizarTest {
 	
-	
-	
+
 	@FXML
-    private Button bAdd;
+    private Button bResponder;
 	@FXML
     private Button bBack;
 	
 	@FXML
-    private TextField textPregunta;
+    private Label lPregunta;
 	@FXML
-    private TextField textResp1;
+    private Label lResp1;
 	@FXML
-    private TextField textResp2;
+    private Label lResp2;
 	@FXML
-    private TextField textResp3;
+    private Label lResp3;
 	
 	@FXML
     private RadioButton rBut1;
@@ -40,29 +42,19 @@ public class ControllerAddTest {
 	@FXML
     private RadioButton rBut3;
 	
-    private Stage primaryStage;
+	
+	private Stage primaryStage;
+	private String idParametro;
     ToggleGroup toggleGroup = new ToggleGroup();
     
     private Connection con = null;
     private Statement stmt = null;
-    private Statement stmt2 = null;
-    private ResultSet rs = null;
-    private int rsInt;
-	
-	private String idParametro;
-	
-	/*
-	private String[] preguntas = new String[5];
-	private String[] respuestas =  new String[15];
-	private String[] correctas =  new String[5];
-	*/
-	String preguntas;
-	String respuestas;
-	String correctas;
-	
-	private int contador;
-	
-	
+    private int rs;
+    
+    private Test test;
+    private int contador;
+    
+    private String respuestas;
 	
 	public void initialize() {
         String javaVersion = System.getProperty("java.version");
@@ -72,7 +64,7 @@ public class ControllerAddTest {
         con = ControllerDB.getConnection();
         
 
-        bAdd.setOnAction(e -> addPregunta());
+        bResponder.setOnAction(e -> responder());
         bBack.setOnAction(e -> back());
         
         
@@ -83,11 +75,19 @@ public class ControllerAddTest {
         rBut2.setUserData("2");
         rBut3.setToggleGroup(toggleGroup);
         rBut3.setUserData("3");
+        
+        Platform.runLater(() -> {
+
+        	lPregunta.setText(test.getPreguntas(0));
+        	lResp1.setText(test.getRespuesta(0));
+        	lResp2.setText(test.getRespuesta(1));
+        	lResp3.setText(test.getRespuesta(2));
+
+        });
        
         contador = 0;
         
     }
-	
 	public void  cambio(Parent newRoot, String title, int height, int width) {
     	primaryStage = (Stage) bBack.getScene().getWindow();
     	primaryStage.setTitle(title);
@@ -96,67 +96,41 @@ public class ControllerAddTest {
 		primaryStage.getScene().setRoot(newRoot);	
     }
 	
-	public void addPregunta() {
-		
-		
-		if(contador ==  0) {
-			preguntas = textPregunta.getText();
-			respuestas = textResp1.getText();
-			respuestas = textResp2.getText();
-			respuestas = textResp3.getText();
-			
-			correctas = toggleGroup.getSelectedToggle().getUserData().toString();
-		}
-		else {
-			preguntas = preguntas +"||" +textPregunta.getText();
-			respuestas = respuestas +"||" +textResp1.getText();
-			respuestas = respuestas +"||" +textResp2.getText();
-			respuestas = respuestas +"||" +textResp3.getText();
-			
-			correctas = correctas +"||" + toggleGroup.getSelectedToggle().getUserData().toString();
-		}
-		
-		
-		if (contador == 4) {
-			addTest();
-		}
-		
+	public void responder() {
+	
+		respuestas = respuestas +"||" + toggleGroup.getSelectedToggle().getUserData().toString();
 		contador++;
-		textPregunta.clear();
-		textResp1.clear();
-		textResp2.clear();
-		textResp3.clear();
-		toggleGroup.selectToggle(null);
-		if (contador == 4) {
-			bAdd.setText("Crear Test");
+		if (contador < 5) {
+			lPregunta.setText(test.getPreguntas(contador));
+	    	lResp1.setText(test.getRespuesta(contador*3));
+	    	lResp2.setText(test.getRespuesta(contador*3 + 1));
+	    	lResp3.setText(test.getRespuesta(contador*3 + 2));
+	    	
+    	}
+		else {
+			
+			System.out.println("Test realizado");
+			back();
 		}
 		
+    	
 		
 	}
 	
 	public void addTest() {
-	
-		//Buscamos el id del grupo al que da este profesor
-		String queryId = "SELECT * FROM `grupos` WHERE dni_profesor = '"+idParametro+"'";
-		try {
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(queryId);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	
 		
 		String query;
 		try {
-			if(rs.next()) {
-				query = "INSERT INTO `test2` (`id`, `id_Grupo`, `preguntas`, `respuestas`, `correctas`) VALUES (NULL,'"+rs.getString("id_grupo")+"','"+preguntas+"','"+respuestas+"','"+correctas+"')";
+			
+				query = "INSERT INTO `testRealizado2` (`id`, `id_alumno`, `respuestas`, `id_test`) VALUES (NULL,'"+idParametro+"','"+respuestas+"','"+test.getId_test()+"')";
 
-				stmt2 = con.createStatement();
-				rsInt = stmt2.executeUpdate(query);
-				stmt2.close();
+				stmt = con.createStatement();
+				rs = stmt.executeUpdate(query);
+				stmt.close();
 				stmt.close();
 				back();
-			}
+			
 			
 			
 		} catch (SQLException e1) {
@@ -166,20 +140,20 @@ public class ControllerAddTest {
 		//String query = "INSERT INTO `test2` (`id`, `id_Grupo`, `preguntas`, `respuestas`, `correctas`) VALUES (NULL, '1', 'b', 'b', 'b')";
 		
 		
-	}
 	
+	}
 	//Funcion para el boton volver
     public void back() {
     
     	FXMLLoader newRoot;
 		try {
 			
-			newRoot = new FXMLLoader(getClass().getResource("/View/Profesor.fxml"));
+			newRoot = new FXMLLoader(getClass().getResource("/View/Alumno.fxml"));
 			Parent root = (Parent)newRoot.load();
 
-			ControllerProfesor controller = newRoot.<ControllerProfesor>getController();
+			/*ControllerAlumno controller = newRoot.<ControllerAlumno>getController();
 			
-			controller.setUser(idParametro);
+			controller.setUser(idParametro);*/
 			cambio(root, "Crear Test", 500, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -187,10 +161,16 @@ public class ControllerAddTest {
 		}
     	
     }
-	//Se usa para pasar un parametro entre vistas
+    
+    
+  //Se usa para pasar un parametro entre vistas
     public void setUser(String string) {
 		idParametro = string;
 		
 	}
-
+  //Se usa para pasar el test seleccionado entre vistas
+    public void setTest(Test test) {
+		this.test = test;
+		
+	}
 }
