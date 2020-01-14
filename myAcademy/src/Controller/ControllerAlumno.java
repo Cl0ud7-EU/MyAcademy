@@ -46,11 +46,11 @@ public class ControllerAlumno {
 			newRoot = new FXMLLoader(getClass().getResource("/View/ShowPayments.fxml"));
 			Parent root = (Parent)newRoot.load();
 			//Aqui cogemos el controller al que vamos a llamar
-			ControllerShowPayments controller = newRoot.<ControllerShowPayments>getController();
+			//ControllerShowPayments controller = newRoot.<ControllerShowPayments>getController();
 			//Aqui es donde pasamos el parametro, se llama a una funcion que tenemos que crear en el otro controller(no hace falta crearla ya te dice que falta y
 			// le das y te la pone el eclipse, y dentro mandamos lo que queramos, y en el otro controller tenemos que crear una variable, yo le llame parametro,
 			//y simplemente dentro de la funcion le damos valor a parametro.
-			controller.setUser(this.parametro);
+			//controller.setUser(this.parametro);
 			
 			//Esta linea es importante para cada escena, no hacer un copiar pegar de ella, vale el que tienen que es especifico para cada una
 			cambio(root, "Ver pagos", 500, 600);
