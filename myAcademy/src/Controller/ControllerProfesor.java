@@ -86,7 +86,7 @@ public class ControllerProfesor {
 			Parent root = (Parent)newRoot.load();
 
 			//controller.setUser(idParamentro);
-			cambio(root, "Login", 640, 400);
+			cambio(root, "Login", 400, 640);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

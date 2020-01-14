@@ -9,10 +9,12 @@ import java.sql.Statement;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class ControllerAddTest {
@@ -98,44 +100,56 @@ public class ControllerAddTest {
 	
 	public void addPregunta() {
 		
-		
-		if(contador ==  0) {
-			preguntas = textPregunta.getText();
-			respuestas = textResp1.getText();
-			respuestas = textResp2.getText();
-			respuestas = textResp3.getText();
-			
-			correctas = toggleGroup.getSelectedToggle().getUserData().toString();
+		if(toggleGroup.getSelectedToggle() == null || textPregunta.getText().isBlank() || textResp1.getText().isBlank() || textResp2.getText().isBlank() || textResp3.getText().isBlank() ) {
+			Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("Mensaje");
+	    	alert.setHeaderText("Completa todos los campos");
+	 
+	    	alert.showAndWait().ifPresent(rs -> { 
+	    		
+	    	});
 		}
 		else {
-			preguntas = preguntas +"¬" +textPregunta.getText();
-			respuestas = respuestas +"¬" +textResp1.getText();
-			respuestas = respuestas +"¬" +textResp2.getText();
-			respuestas = respuestas +"¬" +textResp3.getText();
+			if(contador ==  0) {
+				preguntas = textPregunta.getText();
+				respuestas = textResp1.getText();
+				respuestas = textResp2.getText();
+				respuestas = textResp3.getText();
+				
+				correctas = toggleGroup.getSelectedToggle().getUserData().toString();
+			}
+			else {
+				preguntas = preguntas +"¬" +textPregunta.getText();
+				respuestas = respuestas +"¬" +textResp1.getText();
+				respuestas = respuestas +"¬" +textResp2.getText();
+				respuestas = respuestas +"¬" +textResp3.getText();
+				
+				correctas = correctas +"¬" + toggleGroup.getSelectedToggle().getUserData().toString();
+			}
 			
-			correctas = correctas +"¬" + toggleGroup.getSelectedToggle().getUserData().toString();
+			
+			if (contador == 4) {
+				addTest();
+			}
+			
+			contador++;
+			textPregunta.clear();
+			textResp1.clear();
+			textResp2.clear();
+			textResp3.clear();
+			toggleGroup.selectToggle(null);
+			if (contador == 4) {
+				bAdd.setText("Crear Test");
+			}
 		}
 		
-		
-		if (contador == 4) {
-			addTest();
-		}
-		
-		contador++;
-		textPregunta.clear();
-		textResp1.clear();
-		textResp2.clear();
-		textResp3.clear();
-		toggleGroup.selectToggle(null);
-		if (contador == 4) {
-			bAdd.setText("Crear Test");
-		}
 		
 		
 	}
 	
 	public void addTest() {
-	
+		
+		
 		//Buscamos el id del grupo al que da este profesor
 		String queryId = "SELECT * FROM `grupos` WHERE dni_profesor = '"+idParametro+"'";
 		try {

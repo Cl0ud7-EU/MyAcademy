@@ -105,7 +105,7 @@ public class ControllerAddPayment {
 			stmt = con.createStatement();
 			rsInsert = stmt.executeUpdate(query);
 			stmt.close();
-			//con.close();
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -183,72 +183,85 @@ public class ControllerAdmin {
     }
     public void  backup() {
     	
-    	/*NOTE: Getting path to the Jar file being executed*/
-        /*NOTE: YourImplementingClass-> replace with the class executing the code*/
-        CodeSource codeSource = ControllerAdmin.class.getProtectionDomain().getCodeSource();
-        File jarFile;
-		try {
-			jarFile = new File(codeSource.getLocation().toURI().getPath());
-			String jarDir = jarFile.getParentFile().getPath();
-		
-	        /*NOTE: Creating Database Constraints*/
-	        String dbName = "JTw8pRhybP";
-	        String dbUser = "JTw8pRhybP";
-	        String dbPass = "FeYHzXYXxk";
-	        String url = "remotemysql.com";
-
-	        /*NOTE: Creating Path Constraints for folder saving*/
-	        /*NOTE: Here the backup folder is created for saving inside it*/
-	        String folderPath = jarDir + "/backup";
-
-	        /*NOTE: Creating Folder if it does not exist*/
-	        File f1 = new File(folderPath);
-	        f1.mkdir();
-
-	        /*NOTE: Creating Path Constraints for backup saving*/
-	        /*NOTE: Here the backup is saved in a folder called backup with the name backup.sql*/
-	         String savePath = "/" + jarDir + "/backup/" + "backup.sql";
-
-	        /*NOTE: Used to create a cmd command*/
-	        String executeCmd ="mysqldump --single-transaction --host "+url+" -u " + dbUser + " -p" + dbPass +" "+ dbName + " -r "+ savePath;
-
-	        /*NOTE: Executing the command here*/
-	        Process runtimeProcess;
-			try {
-				runtimeProcess = Runtime.getRuntime().exec(executeCmd);
-				
-				/* de prueba para borrar ////////////////////////////////////////////////////////////////////////////////////
-				BufferedReader stdError = new BufferedReader(new InputStreamReader(runtimeProcess.getErrorStream()));
-	
-				String s = null;
-				
-				// Read any errors from the attempted command
-				System.out.println("Here is the standard error of the command (if any):\n");
-				System.out.println(stdError.readLine());
-				System.out.println(stdError.readLine()); */
-				
+    	Alert alert = new Alert(AlertType.WARNING);
+    	alert.setTitle("Mensaje");
+    	alert.setHeaderText("Esta funcion requiere tener instalado mysqldump y puede tardar un rato");
+    	//alert.setContentText("I have a great message for you!");
+    	alert.showAndWait().ifPresent(rs -> {
+    	    if (rs == ButtonType.OK) {
+    	
+		        CodeSource codeSource = ControllerAdmin.class.getProtectionDomain().getCodeSource();
+		        File jarFile;
 				try {
-					int processComplete = runtimeProcess.waitFor();
-					if (processComplete == 0) {
-			            System.out.println("Backup Complete");
-			        } else {
-			            System.out.println("Backup Failure");
-			        }
-				} catch (InterruptedException e) {
+					jarFile = new File(codeSource.getLocation().toURI().getPath());
+					String jarDir = jarFile.getParentFile().getPath();
+				
+			        /*NOTE: Creating Database Constraints*/
+			        String dbName = "JTw8pRhybP";
+			        String dbUser = "JTw8pRhybP";
+			        String dbPass = "FeYHzXYXxk";
+			        String url = "remotemysql.com";
+		
+			        /*NOTE: Creating Path Constraints for folder saving*/
+			        /*NOTE: Here the backup folder is created for saving inside it*/
+			        String folderPath = jarDir + "/backup";
+		
+			        /*NOTE: Creating Folder if it does not exist*/
+			        File f1 = new File(folderPath);
+			        f1.mkdir();
+		
+			        /*NOTE: Creating Path Constraints for backup saving*/
+			        /*NOTE: Here the backup is saved in a folder called backup with the name backup.sql*/
+			         String savePath = "/" + jarDir + "/backup/" + "backup.sql";
+		
+			        /*NOTE: Used to create a cmd command*/
+			        String executeCmd ="mysqldump --single-transaction --host "+url+" -u " + dbUser + " -p" + dbPass +" "+ dbName + " -r "+ savePath;
+		
+			        /*NOTE: Executing the command here*/
+			        Process runtimeProcess;
+					try {
+						runtimeProcess = Runtime.getRuntime().exec(executeCmd);
+						
+						
+						try {
+							int processComplete = runtimeProcess.waitFor();
+							if (processComplete == 0) {
+								Alert alert1 = new Alert(AlertType.INFORMATION);
+						    	alert.setTitle("Mensaje");
+						    	alert.setHeaderText("Backup completado");
+						    	//alert.setContentText("I have a great message for you!");
+						    	alert.showAndWait().ifPresent(rs1 -> {
+						    	    if (rs1 == ButtonType.OK) {
+						    	    	
+						    	    }
+						    	});		    
+					           
+					        } else {
+					        	Alert alert1 = new Alert(AlertType.ERROR);
+						    	alert.setTitle("Mensaje");
+						    	alert.setHeaderText("Backup no completado");
+						    	//alert.setContentText("I have a great message for you!");
+						    	alert.showAndWait().ifPresent(rs1 -> {
+						    	    if (rs1 == ButtonType.OK) {
+						    	    	
+						    	    }
+						    	});
+					        }
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			        
+				} catch (URISyntaxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-   
+    	    }
+    	});	
     }
     public void  exit() {
     	Alert alert = new Alert(AlertType.CONFIRMATION);
