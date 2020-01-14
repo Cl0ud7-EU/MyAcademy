@@ -93,7 +93,6 @@ public class ControllerAlumno {
 				test = new Test(rs.getInt(1),rs.getString(2),preguntas,respuestas,correctas);
 				listTest.add(test);
 				
-				
 			}
 			updateList();
 			

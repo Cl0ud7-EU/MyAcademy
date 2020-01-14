@@ -12,11 +12,13 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class ControllerRealizarTest {
@@ -103,28 +105,40 @@ public class ControllerRealizarTest {
 	
 	public void responder() {
 		
-		if(contador ==  0) {
-			respuestas = toggleGroup.getSelectedToggle().getUserData().toString();
-			
-		}
-		else {
-			respuestas = respuestas +"¬" + toggleGroup.getSelectedToggle().getUserData().toString();
-		}
-	
+		if(toggleGroup.getSelectedToggle() != null) {
+			if(contador ==  0) {
+				respuestas = toggleGroup.getSelectedToggle().getUserData().toString();
+				
+			}
+			else {
+				respuestas = respuestas +"¬" + toggleGroup.getSelectedToggle().getUserData().toString();
+			}
 		
-		contador++;
-		if (contador < 5) {
-			lPregunta.setText(test.getPreguntas(contador));
-	    	lResp1.setText(test.getRespuesta(contador*3));
-	    	lResp2.setText(test.getRespuesta(contador*3 + 1));
-	    	lResp3.setText(test.getRespuesta(contador*3 + 2));
-	    	
-    	}
-		else {
-			addTest();
-			System.out.println("Test realizado");
-			back();
+			toggleGroup.selectToggle(null);
+			contador++;
+			if (contador < 5) {
+				lPregunta.setText(test.getPreguntas(contador));
+		    	lResp1.setText(test.getRespuesta(contador*3));
+		    	lResp2.setText(test.getRespuesta(contador*3 + 1));
+		    	lResp3.setText(test.getRespuesta(contador*3 + 2));
+		    	
+	    	}
+			else {
+				addTest();
+				System.out.println("Test realizado");
+				back();
+			}
 		}
+		else {
+			Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("Mensaje");
+	    	alert.setHeaderText("Selecciona una respuesta");
+	    	//alert.setContentText("I have a great message for you!");
+	    	alert.showAndWait().ifPresent(rs -> { 
+	    		
+	    	});	
+		}
+		
 		
     	
 		
@@ -164,9 +178,9 @@ public class ControllerRealizarTest {
 			newRoot = new FXMLLoader(getClass().getResource("/View/Alumno.fxml"));
 			Parent root = (Parent)newRoot.load();
 
-			/*ControllerAlumno controller = newRoot.<ControllerAlumno>getController();
+			ControllerAlumno controller = newRoot.<ControllerAlumno>getController();
 			
-			controller.setUser(idParametro);*/
+			controller.setUser(idParametro);
 			cambio(root, "Crear Test", 500, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
