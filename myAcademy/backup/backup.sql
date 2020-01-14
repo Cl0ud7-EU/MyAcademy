@@ -197,7 +197,7 @@ CREATE TABLE `test2` (
   `respuestas` varchar(6000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `correctas` varchar(6000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +206,7 @@ CREATE TABLE `test2` (
 
 LOCK TABLES `test2` WRITE;
 /*!40000 ALTER TABLE `test2` DISABLE KEYS */;
-INSERT INTO `test2` VALUES (1,'ingles 1','b||b||c||d||e','a||b||c||a||b||c||a||b||c||a||b||c||a||b||c||','1||2||1||3||1'),(2,'ingles 2','b||b||c||d||e','a||b||c||a||b||c||a||b||c||a||b||c||a||b||c||','1||2||1||3||1'),(3,'ingles 3','b||b||c||d||e','a||b||c||a||b||c||a||b||c||a||b||c||a||b||c||','1||2||1||3||1'),(5,'ingles 1','b¬b¬c¬d¬e','b¬b¬c¬b¬b¬c¬b¬b¬c¬b¬b¬c¬b¬b¬c','b¬b¬c¬d¬e');
+INSERT INTO `test2` VALUES (1,'ingles 1','b||b||c||d||e','a||b||c||a||b||c||a||b||c||a||b||c||a||b||c||','1||2||1||3||1'),(2,'ingles 2','b||b||c||d||e','a||b||c||a||b||c||a||b||c||a||b||c||a||b||c||','1||2||1||3||1'),(3,'ingles 3','b||b||c||d||e','a||b||c||a||b||c||a||b||c||a||b||c||a||b||c||','1||2||1||3||1'),(5,'ingles 1','b¬b¬c¬d¬e','b¬b¬c¬b¬b¬c¬b¬b¬c¬b¬b¬c¬b¬b¬c','b¬b¬c¬d¬e'),(6,'ingles 1','Cuando fue 1+1¬pregunta 2¬pregunta 3¬Pregunta4¬Pregunta 5','La respuesta es el fantastico ralph¬resp1¬resp2¬resp3¬resp1¬resp2¬resp3¬resp1¬resp2¬resp3¬resp1¬resp2¬resp3','3¬2¬2¬2¬1');
 /*!40000 ALTER TABLE `test2` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,4 +311,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-14 22:57:33
+-- Dump completed on 2020-01-14 23:14:08

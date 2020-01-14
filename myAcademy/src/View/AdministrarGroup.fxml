@@ -63,7 +63,7 @@
                </font>
             </Label>
             <ComboBox fx:id="combDuration" layoutX="404.0" layoutY="282.0" prefWidth="200.0" />
-            <Button fx:id="bBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Volver" />
+            <Button fx:id="bBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Volver"  />
       </children>
     </AnchorPane>
   </children>

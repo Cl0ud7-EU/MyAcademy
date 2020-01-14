@@ -155,7 +155,7 @@ public class ControllerRealizarTest {
 				stmt = con.createStatement();
 				rs = stmt.executeUpdate(query);
 				stmt.close();
-				stmt.close();
+				con.close();
 				back();
 			
 			

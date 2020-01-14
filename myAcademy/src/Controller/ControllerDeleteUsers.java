@@ -91,7 +91,7 @@ public class ControllerDeleteUsers {
 					stmt = con.createStatement();
 					rsInsert = stmt.executeUpdate(query);
 					stmt.close();
-					//con.close();
+					con.close();
     				back();
 				} catch (SQLException e) {
 					e.printStackTrace();

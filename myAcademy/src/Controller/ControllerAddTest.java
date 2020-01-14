@@ -170,6 +170,7 @@ public class ControllerAddTest {
 				rsInt = stmt2.executeUpdate(query);
 				stmt2.close();
 				stmt.close();
+				con.close();
 				back();
 			}
 			

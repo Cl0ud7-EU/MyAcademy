@@ -90,7 +90,7 @@ public class ControllerDeleteGroups {
 					stmt = con.createStatement();
 					rsInsert = stmt.executeUpdate(query);
 					stmt.close();
-					//con.close();
+					con.close();
     				back();
 				} catch (SQLException e) {
 					e.printStackTrace();
