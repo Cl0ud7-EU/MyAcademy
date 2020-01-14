@@ -86,7 +86,7 @@ public class ControllerLogin {
 							ControllerAlumno controller = newRoot.<ControllerAlumno>getController();
 							
 							controller.setUser(rs.getString(1));
-							cambio(root, "Alumno", 500, 700);
+							cambio(root, "Alumno", 500, 650);
 						
 						}
 						else {

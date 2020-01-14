@@ -82,7 +82,7 @@ public class ControllerShowPayments {
 		        if (empty || a == null || a.getId_pago() == null) {
 		        	setText("");
 		        } else {
-		        	setText(a.getId_pago());
+		        	setText("Cantidad:" + a.getCantidad()+" Fecha: "+ a.getFecha());
 		        	
 		        	listVPagos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Pago>() {
 	                    public void changed(ObservableValue<? extends Pago> observable, Pago oldValue, Pago newValue) {
@@ -112,7 +112,7 @@ public class ControllerShowPayments {
 			ControllerAlumno controller = newRoot.<ControllerAlumno>getController();
 			
 			controller.setUser(this.parametro);
-			cambio(root, "Alumno", 500, 600);
+			cambio(root, "Alumno", 500, 650);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

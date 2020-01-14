@@ -181,7 +181,7 @@ public class ControllerRealizarTest {
 			ControllerAlumno controller = newRoot.<ControllerAlumno>getController();
 			
 			controller.setUser(idParametro);
-			cambio(root, "Crear Test", 500, 600);
+			cambio(root, "Alumno", 500, 650);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

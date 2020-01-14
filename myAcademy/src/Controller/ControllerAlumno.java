@@ -16,9 +16,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class ControllerAlumno {
@@ -70,7 +73,6 @@ public class ControllerAlumno {
 			String query2 = "SELECT * FROM grupos  WHERE id_grupo = '"+rs.getString("id_grupo")+"'";
 			
 			stmt = con.createStatement();
-		//	System.out.println(rs.getString(columnIndex))
 			rs = stmt.executeQuery(query2);
 			
 			}
@@ -137,19 +139,20 @@ public class ControllerAlumno {
     	
     }
 	public void showPayments() {
+		System.out.println("hola");
 		FXMLLoader newRoot;
 		try {			
 			newRoot = new FXMLLoader(getClass().getResource("/View/ShowPayments.fxml"));
 			Parent root = (Parent)newRoot.load();
 			//Aqui cogemos el controller al que vamos a llamar
-			//ControllerShowPayments controller = newRoot.<ControllerShowPayments>getController();
+			ControllerShowPayments controller = newRoot.<ControllerShowPayments>getController();
 			//Aqui es donde pasamos el parametro, se llama a una funcion que tenemos que crear en el otro controller(no hace falta crearla ya te dice que falta y
 			// le das y te la pone el eclipse, y dentro mandamos lo que queramos, y en el otro controller tenemos que crear una variable, yo le llame parametro,
 			//y simplemente dentro de la funcion le damos valor a parametro.
-			//controller.setUser(this.parametro);
+			controller.setUser(this.idParametro);
 			
 			//Esta linea es importante para cada escena, no hacer un copiar pegar de ella, vale el que tienen que es especifico para cada una
-			cambio(root, "Ver pagos", 500, 600);
+			cambio(root, "Ver pagos", 500, 800);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -177,6 +180,26 @@ public class ControllerAlumno {
     }
 
 	private void exit() {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Mensaje");
+    	alert.setHeaderText("Estas seguro de que quieres salir?");
+    	//alert.setContentText("I have a great message for you!");
+    	alert.showAndWait().ifPresent(rs -> {
+    	    if (rs == ButtonType.OK) {
+    	    	FXMLLoader newRoot;
+    			try {
+    				
+    				newRoot = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
+    				Parent root = (Parent)newRoot.load();
+
+    				//controller.setUser(idParamentro);
+    				cambio(root, "Login", 640, 400);
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    	    }
+    	});	
 	}
 
 	public void setUser(String dni) {
