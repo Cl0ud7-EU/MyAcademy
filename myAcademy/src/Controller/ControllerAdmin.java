@@ -65,6 +65,7 @@ public class ControllerAdmin {
         bModAlumnos.setOnAction(e -> modAlumnos());
         bModProfes.setOnAction(e -> modProfes());
         bAddPayment.setOnAction(e -> addPayment());
+        bDelUser.setOnAction(e -> delUser());
         bAddGrupo.setOnAction(e -> addGrupo());
         bAdminGrupo.setOnAction(e -> adminGrupo());
         bBackup.setOnAction(e -> backup());
@@ -130,6 +131,17 @@ public class ControllerAdmin {
 		try {
 			newRoot = FXMLLoader.load(getClass().getResource("/View/AddPayment.fxml"));
 			cambio(newRoot, "A�adir Pago", 500, 836);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    public void  delUser() {
+    	
+    	Parent newRoot;
+		try {
+			newRoot = FXMLLoader.load(getClass().getResource("/View/DeleteUsers.fxml"));
+			cambio(newRoot, "Eliminar usuarios", 500, 836);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
